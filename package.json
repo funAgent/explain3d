@@ -1,0 +1,14 @@
+{
+  "name": "@funagent/explain3d",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node evals/verify.mjs",
+    "check": "node evals/verify.mjs && node scripts/build.mjs"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

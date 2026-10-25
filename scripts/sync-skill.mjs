@@ -1,0 +1,13 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+const root=path.resolve(import.meta.dirname,'..');
+const skill=process.argv[2];if(!skill)throw Error('Pass the authored skill directory.');
+const starter=path.join(skill,'assets/starter');
+for(const [src,dst] of [['packages/runtime','runtime'],['packages/scenes','scenes'],['templates/catalog.mjs','templates/catalog.mjs']])await fs.cp(path.join(root,src),path.join(starter,dst),{recursive:true});
+await fs.copyFile(path.join(root,'apps/site/style.css'),path.join(starter,'style.css'));
+await fs.rm(path.join(starter,'templates/planetary-full'),{recursive:true,force:true});
+const viewer=path.join(starter,'runtime/viewer.mjs');await fs.writeFile(viewer,(await fs.readFile(viewer,'utf8')).replace('../../templates/catalog.mjs','../templates/catalog.mjs'));
+await fs.mkdir(path.join(root,'skills'),{recursive:true});
+await fs.rm(path.join(root,'skills/create-spatial-explainer'),{recursive:true,force:true});
+await fs.cp(skill,path.join(root,'skills/create-spatial-explainer'),{recursive:true});
+console.log('Synced authored skill and starter resources.');

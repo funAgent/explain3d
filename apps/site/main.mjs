@@ -1,0 +1,11 @@
+import {templates,promptFor} from './templates/catalog.mjs';
+const q=s=>document.querySelector(s);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+if(!reduce.matches){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');io.unobserve(e.target);}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));}
+document.querySelectorAll('[data-viewer]').forEach(host=>{import('./runtime/viewer.mjs').then(m=>m.mountViewer(host,{id:host.dataset.viewer,poster:false})).catch(error=>{console.error(error);host.querySelector('.scene-loading').innerHTML='<b>场景暂时未能载入</b><p>请刷新重试，也可以查看源码与提示词。</p>';});});
+document.querySelectorAll('[data-copy]').forEach(button=>button.onclick=async()=>{const target=document.querySelector(button.dataset.copy);try{await navigator.clipboard.writeText(target.value??target.textContent);button.textContent='已复制';setTimeout(()=>button.textContent='复制提示词',1800);}catch{target.focus();target.select?.();button.textContent='请选择文字复制';}});
+const filter=q('#filter');if(filter)filter.onchange=()=>{let n=0;document.querySelectorAll('[data-category]').forEach(el=>{el.hidden=filter.value!=='全部'&&el.dataset.category!==filter.value;if(!el.hidden)n++;});q('#result-count').textContent=`${n} 个可运行模板`;};
+const form=q('#prompt-form');if(form){function generate(){const f=new FormData(form),seed=templates.find(s=>s.id===f.get('template')),base=promptFor(seed);q('#generated-prompt').value=base+`\n新的主题：${f.get('topic')||seed.name}。\n希望讲清楚：${f.get('question')||seed.summary}。\n目标读者：${f.get('audience')}。执行环境：${f.get('host')}。\n先判断现有场景的哪些约束可复用；为新主题重建对象和计算关系，禁止仅替换标题。`;}form.addEventListener('input',generate);generate();}
+const tabs=document.querySelectorAll('[data-host-tab]');tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>{x.setAttribute('aria-selected',String(x===b));x.tabIndex=x===b?0:-1;});document.querySelectorAll('[data-host-panel]').forEach(p=>p.hidden=p.dataset.hostPanel!==b.dataset.hostTab);});
+
+tabs.forEach((b,i)=>b.addEventListener('keydown',e=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){e.preventDefault();const j=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[j].click();tabs[j].focus();}}));

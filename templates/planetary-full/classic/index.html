@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0c1014"><title>行星齿轮 · 机械深度实验室</title><meta name="description" content="一台可以拆开的精密机构。在实时 3D 中观察输入、传递与输出，亲手看懂 4:1 减速。"><link rel="stylesheet" href="./style.css"><script type="importmap">{"imports":{"three":"../vendor/three.module.js"}}</script></head>
+<body>
+<svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="i-lab" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7Z"/><path d="m3 7 9 5 9-5M12 12v10m-4-6V9l4-2 4 2v7"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v6m0-10v1"/></symbol>
+<symbol id="i-reset" viewBox="0 0 24 24"><path d="M19 8a8 8 0 1 0 1 7M19 3v5h-5"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+<symbol id="i-tilt" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2" transform="rotate(18 12 12)"/><path d="m2 9 2-3 1 3m14 6 1 3 2-3"/></symbol>
+<symbol id="i-ring" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="6" stroke-dasharray="1 1.5"/><circle cx="12" cy="12" r="4.6"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/></symbol>
+<symbol id="i-planet" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2 2"/><circle cx="12" cy="6.5" r="3"/><circle cx="7.2" cy="15" r="3"/><circle cx="16.8" cy="15" r="3"/></symbol>
+<symbol id="i-carrier" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="5" cy="17" r="2"/><circle cx="19" cy="17" r="2"/><path d="M12 6v4m-2 3-3.5 2.5M14 13l3.5 2.5"/></symbol>
+<symbol id="i-cube" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M16 6v12" stroke-width="2.4"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+</defs></svg>
+<div class="instrument">
+<header class="masthead"><div class="brand"><svg><use href="#i-lab"/></svg><span>机械深度实验室</span><i></i><h1>行星齿轮</h1><span class="edition">001</span></div><div class="header-actions"><a href="../" style="font-size:11px;color:#a4aeb6;text-decoration:none;padding:10px">返回新版</a><button id="info" class="icon-button" aria-label="查看原理与操作说明" title="原理与操作说明"><svg><use href="#i-info"/></svg></button><button id="reset-view" class="icon-button" aria-label="复位视角" title="复位视角"><svg><use href="#i-reset"/></svg></button><button id="fullscreen" class="icon-button" aria-label="全屏查看" title="全屏查看"><svg><use href="#i-expand"/></svg></button></div></header>
+<main class="workspace">
+<section id="stage" tabindex="0" role="group" aria-label="三维行星齿轮。拖动改变视角，轻点选中零件，空格控制播放。">
+<div class="stage-top"><div class="status"><i id="status-dot"></i><span id="mode-status">机构运转中</span></div><div class="view-tools"><button id="motion" class="view-button" title="单独控制机构转动">暂停转动</button><button id="front-view" class="view-button" aria-pressed="false">正视</button><button id="tilt" class="icon-button" title="倾斜手机查看" aria-label="倾斜手机查看" aria-pressed="false"><svg><use href="#i-tilt"/></svg></button></div></div>
+<canvas id="view" aria-label="具有金属外壳、太阳轮、三个行星轮及输出行星架的立体机构"></canvas>
+<div class="figure-id"><span>EPICYCLIC / 01</span><span id="view-hint">拖动观察 · 轻点选中零件</span></div>
+<div class="scene-caption"><span id="step-number">01</span><div><h2 id="caption-title">从一次转动，看懂四倍减速。</h2><p id="caption-copy">固定内齿圈，太阳轮输入，行星架输出。</p></div></div>
+<div id="loading"><span class="loading-ring"></span><b>正在装配机构</b><small>金属、齿轮与光线，即将就位。</small></div>
+</section>
+<aside class="controls" aria-label="传动设置">
+<div class="panel-heading"><h2>传动设置</h2><span>01 — 04</span></div>
+<div class="metrics"><div class="metric"><span>输入</span><div><b id="input-rpm">24</b><small>rpm</small></div></div><span class="metric-arrow">→</span><div class="metric"><span>输出</span><div><b id="output-rpm">6</b><small>rpm</small></div></div><div class="ratio-meta"><span>减速比</span><strong>4<span>:</span>1</strong><small>内齿圈固定</small></div></div>
+<div class="parameter speed-parameter"><div class="parameter-label"><label for="speed">输入转速</label><div class="value-field"><input id="speed-number" type="number" min="8" max="60" step="1" value="24" aria-label="输入转速数值"><span>rpm</span></div></div><input id="speed" type="range" min="8" max="60" step="1" value="24"><div class="range-endpoints"><span>8</span><span>60</span></div></div>
+<div class="parameter explode-parameter"><div class="parameter-label"><label for="explode">拆解距离</label><div class="value-field"><input id="explode-number" type="number" min="0" max="100" step="1" value="0" aria-label="拆解距离数值"><span>%</span></div></div><input id="explode" type="range" min="0" max="100" step="1" value="0"><div class="range-endpoints"><span>装配</span><span>展开</span></div></div>
+<div class="parts"><div class="parts-heading"><span>机构部件</span><button id="focus" class="focus-toggle" aria-pressed="false" title="突出当前部件，其余部件降低亮度"><svg><use href="#i-eye"/></svg>原理观察</button></div><div class="part-buttons"><button data-part="ring" aria-pressed="false"><svg><use href="#i-ring"/></svg><span>内齿圈</span><small>72 齿 · 固定</small></button><button data-part="sun" aria-pressed="true"><svg><use href="#i-sun"/></svg><span>太阳轮</span><small>24 齿 · 输入</small></button><button data-part="planet" aria-pressed="false"><svg><use href="#i-planet"/></svg><span>行星轮</span><small>3 组 · 传递</small></button><button data-part="carrier" aria-pressed="false"><svg><use href="#i-carrier"/></svg><span>行星架</span><small>轮轴连接 · 输出</small></button></div></div>
+<div class="part-explanation"><div><i></i><h3 id="part-title">太阳轮</h3><span id="part-role">输入 / 24 齿</span></div><p id="part-description">中央的输入齿轮，推动三个行星轮。</p></div>
+<div class="panel-foot"><span id="mechanism-note">理想传动 · 同向输出</span><span>24 / 24 / 72</span></div>
+</aside>
+</main>
+<footer class="transport"><button id="play" class="play-button" aria-label="播放10秒讲解" title="播放10秒讲解"><svg><use href="#i-play"/></svg></button><button id="tour" class="tour-button" aria-pressed="false">10 秒看懂<span>播放讲解</span></button><div class="timeline"><div class="timeline-meter"><div class="timeline-track" aria-hidden="true"><span id="timeline-fill"></span><i id="timeline-thumb"></i></div><input id="timeline" type="range" min="0" max="10" step="0.01" value="0" aria-label="讲解进度" aria-valuetext="已播放 0.0 秒，共 10 秒"></div><span id="time-readout"><b id="elapsed">00.0</b><i> / 10s</i></span></div><div class="mode-switch" aria-label="装配状态"><button id="assemble" aria-pressed="true"><svg><use href="#i-cube"/></svg><span>装配</span></button><button id="disassemble" aria-pressed="false"><svg><use href="#i-layers"/></svg><span>拆解</span></button></div></footer>
+</div>
+<dialog id="info-dialog" aria-labelledby="dialog-title"><div class="dialog-header"><div><span>MECHANICAL DEPTH LAB</span><h2 id="dialog-title">看懂这台机构</h2></div><button id="close-info" class="icon-button" aria-label="关闭说明"><svg><use href="#i-close"/></svg></button></div><div class="dialog-body"><h3>四圈，换一圈。</h3><p>内齿圈固定时，减速比 = 1 + 内齿圈齿数 ÷ 太阳轮齿数。这里是 1 + 72 ÷ 24 = 4。行星轮一边自转，一边公转，行星架将公转传递给输出轴。</p><div class="formula">24 rpm <span>→</span> 6 rpm</div><h3>亲手观察</h3><ul><li>拖动模型改变视角；轻点模型或部件列表选中零件。</li><li>拖动拆解滑块沿轴向展开，复装到位后恢复传动。</li><li>数值框支持直接输入；“原理观察”突出当前零件。</li><li>底部两个播放入口控制同一段十秒讲解；暂停后可继续，也可拖动进度。</li><li>“暂停转动”单独控制机构；方向键调整视角，空格控制当前播放，Home 复位。</li></ul><h3>模型与显示</h3><p>这是理想刚体运动学演示。齿面采用渐开线采样，齿根、轴承和装配结构做了教学简化，不用于制造与受力计算。</p><p>普通屏幕通过透视、遮挡和运动视差呈现深度；专用光学裸眼立体显示还需要相应硬件。倾斜控制依赖设备方向传感器，不使用摄像头。</p><p id="render-info">当前显示模式：正在检测。</p><p class="sources">方法参考 <a href="https://github.com/wheresryan22/anatomy" target="_blank" rel="noopener">Anatomy</a> · 运动学参考 <a href="https://doc.comsol.com/6.4/doc/com.comsol.help.models.mbd.planetary_gear_train/planetary_gear_train.html" target="_blank" rel="noopener">COMSOL</a> · 三维渲染 <a href="https://threejs.org/" target="_blank" rel="noopener">Three.js</a></p></div></dialog>
+<div id="announce" class="sr-only" aria-live="polite"></div>
+<script type="module">import('./app.mjs').catch(error=>{console.error(error);document.querySelector('#loading').innerHTML='<b>机构暂未完成装配</b><small>请刷新重试，或使用较新的浏览器打开。</small><button onclick="location.reload()">重新载入</button>';});</script>
+</body></html>

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.vercel/
+*.tar.gz
+.DS_Store
+.openai/
+__pycache__/
