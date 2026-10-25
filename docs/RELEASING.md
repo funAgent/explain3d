@@ -1,6 +1,6 @@
 # Release operations
 
-Repository: `funAgent/explain3d`. Production domain: `explain.funagent.app`. Hosting team: `team_CflwhIlUKiTX3GNd16fFyhFF` (existing funAgent account team). The exact project/deployment IDs and verified state are recorded in the release handoff after creation.
+Repository: `funAgent/explain3d`. Production domain: `explain.funagent.app`. Hosting team: `team_CflwhIlUKiTX3GNd16fFyhFF` (existing funAgent account team). Vercel project: `prj_BXNJnVDBMqOLGzFODXgxuF3aK7FB`. Initial checked release: `b1fac3a2897e60c893950b4674210aed1ef8d220`, deployment `dpl_FFzNRa3WzfM2rXt5UvSotHjUPyoG`, production READY.
 
 ## Normal update
 
@@ -19,4 +19,4 @@ Use Vercel deployment history to select the last verified production deployment.
 
 ## Scope
 
-Automatic publication means Git events trigger checked website builds . It does not post to Xiaohongshu, WeChat or X. Social copy remains reviewable in `marketing/`.
+Automatic publication means Git events trigger checked website builds. It does not post to Xiaohongshu, WeChat or X. Social copy remains reviewable in `marketing/`.

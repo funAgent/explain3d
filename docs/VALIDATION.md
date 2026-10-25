@@ -24,3 +24,9 @@ Checked actual CPU-rendered pages in Chrome at desktop 1363×936 and iframe CSS 
 ## Unseen-topic forward test
 
 A fresh Codex task used the authored Skill with a cam/follower question, without the intended implementation or sibling project context. It created a new inline knife-edge radial cam, parameterized 8–20 mm lift, four motion phases, new geometry, specification and checks. Parent reran 130,013 constraint samples and actual-controller lifecycle harness successfully. Analytic closure was within floating-point precision and sampled polygon midpoint error below 0.001 mm. This is numerical evidence for the ideal model, not a manufacturing tolerance. Browser CSS, GPU, native accessibility and physical devices for that unseen scene remain untested. The result shows transfer within Codex, not proof of all-host compatibility.
+
+## Public release check — 2026-10-25
+
+The complete source tree was published at commit b1fac3a2897e60c893950b4674210aed1ef8d220. Its GitHub source update automatically triggered Vercel production deployment dpl_FFzNRa3WzfM2rXt5UvSotHjUPyoG, which reached READY and assigned explain.funagent.app. This is an observed Git-to-production deployment, not only a workflow configuration.
+
+A fresh anonymous Git clone ran npm run check successfully and initialized a slider-crank explainer from the public Skill. Structural/local-import checks passed. The public website was opened in the connected Chrome browser: the scene reported WebGL, with no application console errors at the start of verification. Guided playback and configuration hiding were checked on the public deployment. This adds a browser WebGL check; physical phones, orientation, sustained performance and other Agent hosts remain untested.
