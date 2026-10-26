@@ -1,0 +1,67 @@
+{
+  "question": "同一个词怎样按固定合并规则变成 Token 编号？",
+  "durationSeconds": 46,
+  "objects": [
+    {
+      "id": "input",
+      "meaning": "一个预设英文词"
+    },
+    {
+      "id": "span",
+      "meaning": "覆盖输入连续字母的片段；宽度表示字母跨度，不表示概率"
+    },
+    {
+      "id": "id",
+      "meaning": "该教学词表的固定索引"
+    }
+  ],
+  "relationships": [
+    "每轮合并只覆盖相邻匹配片段",
+    "所有片段拼接始终等于输入",
+    "同词表解码编号等于输入",
+    "规则版本改变时Token数量可能改变"
+  ],
+  "inputs": {
+    "word": [
+      "hugs",
+      "hug",
+      "pug",
+      "unhug",
+      "bun"
+    ],
+    "limit": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "outputs": [
+    "pieces",
+    "ids",
+    "decoded",
+    "trace"
+  ],
+  "simplifications": [
+    "已确定规则，非本轮训练",
+    "预设ASCII英文词；不处理空格、中文、字节级BPE与特殊Token",
+    "编号与分词结果均非生产模型词表"
+  ],
+  "sources": [
+    "https://huggingface.co/learn/llm-course/en/chapter6/5"
+  ],
+  "acceptance": [
+    "独立黄金分词与ID",
+    "字符跨度守恒",
+    "解码可逆",
+    "无匹配规则不改变状态",
+    "反向seek确定性",
+    "真实桌面/手机验收"
+  ],
+  "untested": [
+    "真实学习者效果",
+    "实体手机",
+    "独立浏览器引擎",
+    "屏幕阅读器实机"
+  ]
+}
