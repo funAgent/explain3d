@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node evals/verify.mjs",
-    "check": "node evals/verify.mjs && node scripts/build.mjs"
+    "test": "node evals/verify.mjs && node apps/site/learn/token-choice/model.test.mjs && node evals/verify-token-choice.mjs && node evals/verify-course.mjs",
+    "check": "npm test && npm run build"
   },
   "engines": {
     "node": ">=22.12.0"
