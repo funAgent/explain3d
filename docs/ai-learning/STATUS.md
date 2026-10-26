@@ -4,7 +4,7 @@ Updated: 2026-10-27 (Asia/Shanghai).
 
 The user authorized ten scenes, an iteration every twelve hours, independent learner-oriented review and publication after acceptance. A recurring task has been created. Each scheduled run works on one scene; failure keeps that scene active rather than counting it as complete.
 
-## Published 1 / 10: scores to one Token
+## Published lesson 05: scores to one Token
 
 - Course position: 05; first implemented/reviewed scene in this release sequence.
 - Route: `/learn/token-choice/`; course index: `/learn/`.
@@ -22,10 +22,10 @@ The user authorized ten scenes, an iteration every twelve hours, independent lea
 
 ## Remaining work
 
-Nine scenes are planned, not implemented or advertised as playable. See `roadmap.json` for topics, learning outcomes and current source status. The existing experimental autoregression and roulette pages are not silently promoted to accepted lessons.
+Eight scenes are planned, not implemented or advertised as playable. See `roadmap.json` for topics, learning outcomes and current source status. The existing experimental autoregression and roulette pages are not silently promoted to accepted lessons.
 
 Real learner sessions, physical phones, screen-reader devices and independent browser-engine coverage have not been completed. These limits do not prevent releasing a clearly labeled teaching sample, but they must not be represented as tested.
 
-## Reviewed release candidate: tokenization
+## Published lesson 01: tokenization (2 / 10 total)
 
-Route /learn/tokenization/. A 46-second fixed-rule character-level BPE teaching model shows input, base symbols, ranked adjacent merges, boundaries, vocabulary IDs and reversible decoding. Five supported English words and four rule versions are explicit; not a production tokenizer, no Chinese/space/byte-level support. Golden splits and IDs, span conservation, rule no-op, all version/time samples and decode round trips pass. Desktop and390×844 visual/quiz checks completed. The new inputunhug predicts two tokens and verifies[8,9]. This is developer teaching review, not measured learning gains. Pending production deployment verification; do not count this candidate as published until READY and a production-route check.
+Route /learn/tokenization/. A 46-second fixed-rule character-level BPE teaching model shows input, base symbols, ranked adjacent merges, boundaries, vocabulary IDs and reversible decoding. Five supported English words and four rule versions are explicit; not a production tokenizer, no Chinese/space/byte-level support. Golden splits and IDs, span conservation, rule no-op, all version/time samples and decode round trips pass. Desktop and390×844 visual/quiz checks completed. The new inputunhug predicts two tokens and verifies[8,9]. This is developer teaching review, not measured learning gains. Published at https://explain.funagent.app/learn/tokenization/ . PR #2 head a5ce351fa1b6f9b7a28732d4aeb0655c1c30155a passed CI run40380762972 and a READY preview; preview HTML and app module returned200 with the slider fix. Merge sourcebb9c7d9eb0840a688bf3ef6e8f45471aa2c4e1f5 deployed READY asdpl_8jU8UL9yGByo1v3dQEPqpeBT8fUF. Production browser confirmed rules0→[2,6,1,5], rules3→[9,5], and quiz→unhug→[8,9]. Next: embedding.

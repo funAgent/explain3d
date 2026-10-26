@@ -22,9 +22,12 @@
       "order": 1,
       "title": "文字怎样变成 Token？",
       "outcome": "观察同一句话如何分成片段并映射为编号；区分字符、词和 Token。",
-      "status": "reviewed",
+      "status": "published",
       "route": "/learn/tokenization/",
-      "published": false
+      "published": true,
+      "releaseCommit": "bb9c7d9eb0840a688bf3ef6e8f45471aa2c4e1f5",
+      "verifiedDeployment": "dpl_8jU8UL9yGByo1v3dQEPqpeBT8fUF",
+      "verifiedOn": "2026-10-27"
     },
     {
       "id": "embedding",
