@@ -40,9 +40,12 @@
     "order": 5,
     "title": "一个词，是怎样被选出来的？",
     "outcome": "分数经过温度、指数和归一化，怎样得到一次选择。",
-    "status": "reviewed",
+    "status": "published",
     "route": "/learn/token-choice/",
-    "published": false
+    "published": true,
+    "releaseCommit": "fc03f80a1953a82d7ad104fb90307bf5cb2d131a",
+    "verifiedDeployment": "dpl_8KskYdCLpm2uudUGezEzk3RiFJyD",
+    "verifiedOn": "2026-10-26"
   },
   {
     "id": "autoregression",
