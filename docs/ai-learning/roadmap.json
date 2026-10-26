@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-26",
+  "updated": "2026-10-27",
   "target": 10,
   "cadenceHours": 12,
   "releasePolicy": "One reviewed scene per iteration; continue a failed scene before advancing.",
@@ -22,8 +22,8 @@
       "order": 1,
       "title": "文字怎样变成 Token？",
       "outcome": "观察同一句话如何分成片段并映射为编号；区分字符、词和 Token。",
-      "status": "planned",
-      "route": null,
+      "status": "reviewed",
+      "route": "/learn/tokenization/",
       "published": false
     },
     {

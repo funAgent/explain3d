@@ -4,8 +4,8 @@
     "order": 1,
     "title": "文字怎样变成 Token？",
     "outcome": "观察同一句话如何分成片段并映射为编号；区分字符、词和 Token。",
-    "status": "planned",
-    "route": null,
+    "status": "reviewed",
+    "route": "/learn/tokenization/",
     "published": false
   },
   {
