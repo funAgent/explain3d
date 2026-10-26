@@ -1,0 +1,79 @@
+{
+  "id": "token-choice",
+  "question": "模型已经给出候选分数后，温度、Softmax 和随机采样怎样得到下一个 Token？",
+  "audience": "希望逐步理解 AI 原理、没有概率论背景的读者",
+  "context": "the cat sat on the …",
+  "objects": [
+    {"id":"scores","meaning":"四个教学候选的原始 logits，保留候选身份与颜色","units":"无量纲分数"},
+    {"id":"temperature","meaning":"把每个原始分数除以同一温度 T","units":"无量纲"},
+    {"id":"weights","meaning":"exp(z/T) 给出的正权重，尚未归一化","units":"无量纲权重"},
+    {"id":"probability","meaning":"每个权重除以全部权重之和，概率带宽度正比于概率","units":"概率，合计 1 或 100%"},
+    {"id":"sampling","meaning":"0 到 1 的均匀随机数 u 在累积概率带上的位置","units":"无量纲，0 ≤ u < 1"},
+    {"id":"result","meaning":"u 所在区间对应的候选词卡","units":"候选索引"}
+  ],
+  "relationships": [
+    "tokens = [mat, floor, bed, sofa]；logits = [3, 2, 1, 0]",
+    "scaled_i = logits_i / T",
+    "weight_i = exp(scaled_i)",
+    "p_i = weight_i / sum_j(weight_j)",
+    "cdf_0 = 0；cdf_(i+1) = sum_(j≤i)(p_j)；cdf_4 = 1",
+    "selected = i，当 cdf_i ≤ u < cdf_(i+1)",
+    "固定输入下调节温度不改变原始 logits；固定 seed 和 draw 不改变随机数 u"
+  ],
+  "parameters": [
+    {"id":"temperature","min":0.4,"max":2,"default":0.8,"units":"无量纲"},
+    {"id":"seed","default":22,"units":"整数伪随机种子"},
+    {"id":"draw","default":0,"min":0,"units":"非负整数抽样序号"}
+  ],
+  "outputs": ["scaled","weights","totalWeight","p","cdf","entropy","u","selected"],
+  "durationSeconds": 50,
+  "chapters": [
+    {"id":"scores","start":0,"end":8,"message":"分数不是概率"},
+    {"id":"temperature","start":8,"end":18,"message":"除以温度，缩放分数差异"},
+    {"id":"weights","start":18,"end":27,"message":"取指数，把分差变成权重之比"},
+    {"id":"probability","start":27,"end":36,"message":"归一化得到总和为 1 的概率"},
+    {"id":"sampling","start":36,"end":45,"message":"随机数在累积概率带上定位"},
+    {"id":"result","start":45,"end":50,"message":"显示这一次抽到的候选"}
+  ],
+  "timeline": {
+    "sampler":"sample(time, {temperature, seed, draw})",
+    "selectionVisibleAtSeconds":43.2,
+    "numericState":"所有数值从同一组输入计算，几何变形插值不改变它们的数学定义",
+    "playback":"实际 elapsed time，支持暂停、继续、反向拖动、重播与结束恢复；隐藏标签页暂停",
+    "narration":"每次仅一条气泡跟随当前数学对象；颜色在所有阶段保持候选身份一致"
+  },
+  "invariants": [
+    "四个概率均为正且总和约为 1",
+    "全部 cdf 区间有序、无重叠，覆盖 [0,1)",
+    "log(p_i / p_j) = (z_i - z_j) / T",
+    "在这组不相等的 logits 上，提高 T 提高熵并降低最大概率",
+    "seed、draw、temperature 和 time 相同时，状态完全可重现",
+    "43.2 秒前 selected 为 null；之后与 inverse CDF 结果一致",
+    "对返回数组的修改不会污染后续 sample 或原始教学数据"
+  ],
+  "simplifications": [
+    "四个词构成完整的教学词表；不是从真实模型词表截取的前四项，也不是线上模型输出",
+    "本节从已有 logits 开始，不讲 tokenizer、Embedding、Attention 或语言模型怎样产生这些分数",
+    "词卡用于展示教学候选，不声称它们在任何具体 tokenizer 中恰好各占一个 token",
+    "固定输入的单步采样，不把结果接到上下文进行下一轮自回归",
+    "不使用 top-k、top-p、重复惩罚或其他采样过滤器",
+    "受限的 logits 与 T 使直接计算 exp(z/T) 安全；通用实现需做最大值平移以防溢出",
+    "数值刻度必须明确：权重柱如自适应缩放，应标明最大值或相对高度；概率宽度始终按真实概率",
+    "游标移动用于揭示一个预先确定的伪随机数，不通过动画速度或物理运动决定选择",
+    "立体厚度与阴影只用于层次，数值长度在正视平面编码",
+    "高温不会保证每个低排名候选的概率都增大，也不意味着答案更正确"
+  ],
+  "sources": [
+    {"url":"https://docs.pytorch.org/docs/2.14/generated/torch.nn.Softmax.html","supports":"指数归一化公式与输出概率和为 1"},
+    {"url":"https://huggingface.co/docs/transformers/en/internal/generation_utils#transformers.TemperatureLogitsWarper","supports":"正温度对采样分布的调节；温度与随机采样的关系"},
+    {"url":"https://github.com/wheresryan22/anatomy","supports":"已获用户认可的细线、等轴层次与克制配色工艺参考；本场景不复用原轮盘几何"}
+  ],
+  "acceptance": [
+    "独立 Python 黄金值与 JavaScript 数学结果一致",
+    "概率归一化、指数权重、CDF 边界、温度熵关系、固定种子采样与反向跳转测试通过",
+    "在桌面和手机实际检查当前讲解对象、箭头和数值均清晰，无重叠或裁切",
+    "播放、暂停、继续、拖动、参数改变、再次抽样、重播及完成后的配置恢复均可观察验证",
+    "保留单一焦点；未讲到的计算与参数不会同时占据主视觉"
+  ],
+  "untested": ["真实手机硬件性能与所有浏览器组合", "独立的学习效果实验"]
+}

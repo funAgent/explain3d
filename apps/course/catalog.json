@@ -1,0 +1,92 @@
+[
+  {
+    "id": "tokenization",
+    "order": 1,
+    "title": "文字怎样变成 Token？",
+    "outcome": "观察同一句话如何分成片段并映射为编号；区分字符、词和 Token。",
+    "status": "planned",
+    "route": null,
+    "published": false
+  },
+  {
+    "id": "embedding",
+    "order": 2,
+    "title": "编号怎样变成向量？",
+    "outcome": "跟踪查表得到的向量，并比较方向、距离与其教学边界。",
+    "status": "planned",
+    "route": null,
+    "published": false
+  },
+  {
+    "id": "attention",
+    "order": 3,
+    "title": "一个词如何参考其他词？",
+    "outcome": "从 QK 分数到因果遮罩、注意力权重与 V 的加权结果。",
+    "status": "planned",
+    "route": null,
+    "published": false
+  },
+  {
+    "id": "transformer",
+    "order": 4,
+    "title": "一层网络怎样更新表示？",
+    "outcome": "跟踪注意力、残差、归一化与前馈变换中的同一个向量。",
+    "status": "planned",
+    "route": null,
+    "published": false
+  },
+  {
+    "id": "token-choice",
+    "order": 5,
+    "title": "一个词，是怎样被选出来的？",
+    "outcome": "分数经过温度、指数和归一化，怎样得到一次选择。",
+    "status": "reviewed",
+    "route": "/learn/token-choice/",
+    "published": false
+  },
+  {
+    "id": "autoregression",
+    "order": 6,
+    "title": "为什么生成要一个 Token 接一个？",
+    "outcome": "把选中的 Token 接回上下文，区分重算与 KV 缓存的复用。",
+    "status": "planned",
+    "route": null,
+    "published": false
+  },
+  {
+    "id": "context",
+    "order": 7,
+    "title": "System Prompt 怎样进入上下文？",
+    "outcome": "查看消息、指令与窗口容量，理解裁剪、优先级和能力边界。",
+    "status": "planned",
+    "route": null,
+    "published": false
+  },
+  {
+    "id": "rag",
+    "order": 8,
+    "title": "检索怎样帮助模型回答？",
+    "outcome": "从文档切片、检索到带来源的上下文；区分找到、引用与答对。",
+    "status": "planned",
+    "route": null,
+    "published": false
+  },
+  {
+    "id": "skills-tools-mcp",
+    "order": 9,
+    "title": "Skill、工具和 MCP 分别做什么？",
+    "outcome": "用一次任务追踪操作说明、工具调用、协议与实际执行。",
+    "status": "planned",
+    "route": null,
+    "published": false
+  },
+  {
+    "id": "personal-agent",
+    "order": 10,
+    "title": "Personal Agent 怎样完成一件事？",
+    "outcome": "跟踪计划、行动、观察、记忆与结束条件，看到失败如何反馈。",
+    "status": "planned",
+    "route": null,
+    "published": false
+  }
+]
