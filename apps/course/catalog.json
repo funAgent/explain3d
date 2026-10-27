@@ -28,9 +28,12 @@
     "order": 3,
     "title": "一个词如何参考其他词？",
     "outcome": "从 QK 分数到因果遮罩、注意力权重与 V 的加权结果。",
-    "status": "reviewed",
+    "status": "published",
     "route": "/learn/attention/",
-    "published": false
+    "published": true,
+    "releaseCommit": "49086e255b9527202f467103d7d0353b81627632",
+    "verifiedDeployment": "dpl_H4cKbv114YSRUKfzEGFXcdUXfE9P",
+    "verifiedOn": "2026-10-28"
   },
   {
     "id": "transformer",

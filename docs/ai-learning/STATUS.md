@@ -1,8 +1,8 @@
 # AI principles course status
 
-Updated: 2026-10-27 (Asia/Shanghai).
+Updated: 2026-10-28 (Asia/Shanghai).
 
-Current total: **3 / 10 published**. Next active topic: **Attention**.
+Current total: **4 / 10 published**. Next active topic: **Transformer layer**.
 
 The user authorized ten scenes, an iteration every twelve hours, independent learner-oriented review and publication after acceptance. A recurring task has been created. Each scheduled run works on one scene; failure keeps that scene active rather than counting it as complete.
 
@@ -24,7 +24,7 @@ The user authorized ten scenes, an iteration every twelve hours, independent lea
 
 ## Remaining work
 
-Seven scenes are planned, not implemented or advertised as playable. See `roadmap.json` for topics, learning outcomes and current source status. The existing experimental autoregression and roulette pages are not silently promoted to accepted lessons.
+Six scenes are planned, not implemented or advertised as playable. See `roadmap.json` for topics, learning outcomes and current source status. The existing experimental autoregression and roulette pages are not silently promoted to accepted lessons.
 
 Real learner sessions, physical phones, screen-reader devices and independent browser-engine coverage have not been completed. These limits do not prevent releasing a clearly labeled teaching sample, but they must not be represented as tested.
 
@@ -37,6 +37,6 @@ Route /learn/tokenization/. A 46-second fixed-rule character-level BPE teaching 
 
 Route `/learn/embedding/`. One question: how an integer ID retrieves one row from a fixed parameter table. A four-row, two-dimensional authored example connects indexing, unchanged row copy, equal-scale coordinates and a controlled cat/car/dog comparison. Same ID is an address, not a semantic magnitude. Pausing restores configuration; one routed annotation avoids the table and negative-coordinate labels. Independent numerical/seek tests and desktop/narrow-width browser checks passed; reduced-motion manual toggle and controlled hidden-event path were exercised. This is teaching review, not learner-effect research. Published at https://explain.funagent.app/learn/embedding/ . PR #3 head 9b28b2ff7bf87d7025bd83dbea9f02e35e2af910 passed CI run 40464108178; READY preview dpl_2GDcHZ7FDhN5h2PUJUkAb5XCjTVu served the exact reviewed HTML/app/stage source. Merge 2420d77c370a0e888e64c0c13e87f923b5cefb9c reached production READY as dpl_6L6uGjakR9Mz1i7masoE4f19FEbb; main CI run 40464227142 passed. Production browser verified course 3/10, entry navigation, dog vector [1.8,1.2], distance .283/cosine .992, correct quiz feedback and return to the same diagram. Next: Attention.
 
-## Reviewed Attention candidate — 2026-10-28
+## Published lesson 03: Attention — 2026-10-28
 
-Single causal attention row at C: authored Q/K/V, scaled dot products, future mask, exponential normalization, weighted V and sum. Query direction changes output (4.248 / 10 / 15.752); masked future V leaves output invariant. Tests and actual desktop/narrow-browser teaching review passed as detailed in LESSON.md. Candidate only until branch CI/preview and matching production deployment are verified. No new Skill or host-compatibility claim; uses the shared playback, annotation and evidence method. Next after acceptance: Transformer layer.
+Single causal attention row at C: authored Q/K/V, scaled dot products, future mask, exponential normalization, weighted V and sum. Query direction changes output (4.248 / 10 / 15.752); masked future V leaves output invariant. Tests and actual desktop/narrow-browser teaching review passed as detailed in LESSON.md. Published at https://explain.funagent.app/learn/attention/ . PR #4 passed CI 40562980763 and READY preview dpl_8fpzGGqXyoq2sbd7jDRdFDc2k5hV; fetched preview HTML/app/stage matched reviewed source exactly. Merge 49086e255b9527202f467103d7d0353b81627632 reached production READY as dpl_H4cKbv114YSRUKfzEGFXcdUXfE9P. Production browser verified future V=1000 leaves output 15.752, query zero produces 10, and prediction feedback/return preserves that state. No new Skill or host-compatibility claim; uses the shared playback, annotation and evidence method. Next after acceptance: Transformer layer.
