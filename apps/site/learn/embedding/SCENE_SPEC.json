@@ -1,0 +1,17 @@
+{
+  "id": "embedding",
+  "question": "一个 Token 编号如何从固定表中取出向量？",
+  "audience": "已看过 Token 编号、初识坐标的学习者",
+  "durationSeconds": 44,
+  "inputs": {"id": {"integer": true, "min": 0, "max": 3, "default": 1}},
+  "objects": ["输入 Token 与 ID", "4×2 参数表 E", "被索引的整行", "输出向量", "等尺度二维坐标", "cat 参照向量"],
+  "relationships": ["e = E[id]", "horizontal = e[0]", "vertical = e[1]", "distance = Euclidean(e, E[0])", "cosine = dot(e,E[0]) / (norm(e)*norm(E[0]))"],
+  "table": [[2,1],[-2,1],[1.8,1.2],[-1,-2]],
+  "tokens": ["cat","car","dog","book"],
+  "mapping": {"color": "Token identity across input/table/output/plot", "axes": "both −3…3, equal units", "tableCellWidth": "layout only, not numerical magnitude", "depth": "decorative bevel, no quantitative perspective"},
+  "phases": [{"start":0,"name":"input index"},{"start":6,"name":"select row"},{"start":13,"name":"copy unchanged components"},{"start":22,"name":"construct coordinates"},{"start":30,"name":"compare geometry"},{"start":38,"name":"controlled experiment"}],
+  "experiment": "Keep E fixed; choose ID 1 car then ID 2 dog and compare with ID 0 cat. ID adjacency does not imply vector proximity.",
+  "transfer": "Predict E[2]; explain row lookup versus duplicating/multiplying ID; verify on same diagram.",
+  "sources": ["https://docs.pytorch.org/docs/stable/generated/torch.nn.Embedding.html", "https://docs.pytorch.org/tutorials/beginner/nlp/word_embeddings_tutorial.html"],
+  "simplifications": ["Authored 2D table, not trained or extracted from a model", "No tokenizer executed; IDs are unique to this teaching table", "No position processing, context, attention, training or inference", "Axes are coordinates with no named semantic interpretation", "Geometric similarity does not establish semantic truth", "SVG depth on an ordinary display, not binocular autostereoscopy"]
+}

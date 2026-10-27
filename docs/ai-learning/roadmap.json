@@ -33,9 +33,9 @@
       "id": "embedding",
       "order": 2,
       "title": "编号怎样变成向量？",
-      "outcome": "跟踪查表得到的向量，并比较方向、距离与其教学边界。",
-      "status": "planned",
-      "route": null,
+      "outcome": "用编号定位词表的一行，取出向量；再用坐标比较距离与方向，区分编号与几何关系。",
+      "status": "reviewed",
+      "route": "/learn/embedding/",
       "published": false
     },
     {
