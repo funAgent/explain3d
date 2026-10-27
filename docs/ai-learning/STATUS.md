@@ -2,6 +2,8 @@
 
 Updated: 2026-10-27 (Asia/Shanghai).
 
+Current total: **3 / 10 published**. Next active topic: **Attention**.
+
 The user authorized ten scenes, an iteration every twelve hours, independent learner-oriented review and publication after acceptance. A recurring task has been created. Each scheduled run works on one scene; failure keeps that scene active rather than counting it as complete.
 
 ## Published lesson 05: scores to one Token
@@ -31,6 +33,6 @@ Real learner sessions, physical phones, screen-reader devices and independent br
 Route /learn/tokenization/. A 46-second fixed-rule character-level BPE teaching model shows input, base symbols, ranked adjacent merges, boundaries, vocabulary IDs and reversible decoding. Five supported English words and four rule versions are explicit; not a production tokenizer, no Chinese/space/byte-level support. Golden splits and IDs, span conservation, rule no-op, all version/time samples and decode round trips pass. Desktop and390×844 visual/quiz checks completed. The new inputunhug predicts two tokens and verifies[8,9]. This is developer teaching review, not measured learning gains. Published at https://explain.funagent.app/learn/tokenization/ . PR #2 head a5ce351fa1b6f9b7a28732d4aeb0655c1c30155a passed CI run40380762972 and a READY preview; preview HTML and app module returned200 with the slider fix. Merge sourcebb9c7d9eb0840a688bf3ef6e8f45471aa2c4e1f5 deployed READY asdpl_8jU8UL9yGByo1v3dQEPqpeBT8fUF. Production browser confirmed rules0→[2,6,1,5], rules3→[9,5], and quiz→unhug→[8,9]. Next: embedding.
 
 
-## Reviewed candidate lesson 02: Embedding
+## Published lesson 02: Embedding (3 / 10 total)
 
-Route `/learn/embedding/`. One question: how an integer ID retrieves one row from a fixed parameter table. A four-row, two-dimensional authored example connects indexing, unchanged row copy, equal-scale coordinates and a controlled cat/car/dog comparison. Same ID is an address, not a semantic magnitude. Pausing restores configuration; one routed annotation avoids the table and negative-coordinate labels. Independent numerical/seek tests and desktop/narrow-width browser checks passed; reduced-motion manual toggle and controlled hidden-event path were exercised. This is teaching review, not learner-effect research. Production release is pending the branch CI/preview and main READY checks. Next after release: Attention.
+Route `/learn/embedding/`. One question: how an integer ID retrieves one row from a fixed parameter table. A four-row, two-dimensional authored example connects indexing, unchanged row copy, equal-scale coordinates and a controlled cat/car/dog comparison. Same ID is an address, not a semantic magnitude. Pausing restores configuration; one routed annotation avoids the table and negative-coordinate labels. Independent numerical/seek tests and desktop/narrow-width browser checks passed; reduced-motion manual toggle and controlled hidden-event path were exercised. This is teaching review, not learner-effect research. Published at https://explain.funagent.app/learn/embedding/ . PR #3 head 9b28b2ff7bf87d7025bd83dbea9f02e35e2af910 passed CI run 40464108178; READY preview dpl_2GDcHZ7FDhN5h2PUJUkAb5XCjTVu served the exact reviewed HTML/app/stage source. Merge 2420d77c370a0e888e64c0c13e87f923b5cefb9c reached production READY as dpl_6L6uGjakR9Mz1i7masoE4f19FEbb; main CI run 40464227142 passed. Production browser verified course 3/10, entry navigation, dog vector [1.8,1.2], distance .283/cosine .992, correct quiz feedback and return to the same diagram. Next: Attention.

@@ -34,9 +34,12 @@
       "order": 2,
       "title": "编号怎样变成向量？",
       "outcome": "用编号定位词表的一行，取出向量；再用坐标比较距离与方向，区分编号与几何关系。",
-      "status": "reviewed",
+      "status": "published",
       "route": "/learn/embedding/",
-      "published": false
+      "published": true,
+      "releaseCommit": "2420d77c370a0e888e64c0c13e87f923b5cefb9c",
+      "verifiedDeployment": "dpl_6L6uGjakR9Mz1i7masoE4f19FEbb",
+      "verifiedOn": "2026-10-27"
     },
     {
       "id": "attention",
