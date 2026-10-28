@@ -53,7 +53,7 @@ export function narration(frame){
   {eyebrow:'看这里 · 候选分数',title:'先有分数，还没有概率。',body:'同一个输入，四个候选各有一个分数。数值越大，倾向越强；它们还不是百分比。',formula:'教学分数 z = [3, 2, 1, 0]'},
   {eyebrow:'看这里 · 温度缩放',title:'除以温度，改变分数之间的差距。',body:`原始分数保持不变。T = ${t} 时，相邻候选的分差从 1 变为 ${number(1/temperature)}。`,formula:`3 ÷ ${t} = ${number(scaled[0])}；2 ÷ ${t} = ${number(scaled[1])}`},
   {eyebrow:'看这里 · 指数权重',title:'取指数，让分差变成权重之比。',body:'每个数经过指数运算，得到一个正的权重。高分候选获得更多权重，此时总和还不是 1。',formula:`exp(${number(scaled[0])}) = ${number(weights[0])}；权重总和 = ${number(totalWeight)}`},
-  {eyebrow:'看这里 · 概率分布',title:frame.progress<.73?'每个权重除以总和，得到概率。':'除以总和，所有机会合成 100%。',body:frame.progress<.73?'四个概率的总和为 1。现在把这组概率重新排成一条带，候选与颜色保持不变。':'每个权重都除以同一个总和。彩色区间的宽度，就表示这个候选被抽中的概率。',formula:`P(mat) = ${number(weights[0])} ÷ ${number(totalWeight)} = ${percent(p[0])}%`},
+  {eyebrow:'看这里 · 概率分布',title:frame.progress<.73?'每个权重除以总和，得到概率。':'除以总和，所有机会合成 100%。',body:frame.progress<.73?'同色连线始终连着同一个候选；数值不变，高度正变成区间宽度。':'四段合为 100%；区间越宽，被均匀随机数命中的机会越大。',formula:`P(mat) = ${number(weights[0])} ÷ ${number(totalWeight)} = ${percent(p[0])}%`},
   {eyebrow:'看这里 · 随机数游标',title:selected===null?'一个随机数，落入一个概率区间。':`游标落定，选中了 ${TOKENS[selected]}。`,body:'先生成 0 到 1 之间的均匀随机数。游标展示它的位置，落入哪个区间，就选哪个候选。',formula:`u = ${u.toFixed(4)}；选择满足 Cᵢ ≤ u < Cᵢ₊₁ 的候选`},
   {eyebrow:'看这里 · 这次的选择',title:`这次得到 ${TOKENS[selected]??'一个候选'}。`,body:`${selected===null?'':ZH[selected]+' · 概率 '+percent(p[selected])+'%。'}同一个输入再抽一次，可能选到别的候选。`,formula:'固定上下文的一次采样 · 本节没有继续生成后续 Token'}
  ][phase];

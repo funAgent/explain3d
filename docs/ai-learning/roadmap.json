@@ -153,6 +153,13 @@
       "tokenization",
       "embedding"
     ],
-    "resumeAfter": "All four published scenes pass the reopened craft and causal-motion gates."
+    "resumeAfter": "All four published scenes pass the reopened craft and causal-motion gates.",
+    "candidate": {
+      "scene": "token-choice",
+      "branch": "fix/token-choice-morph-craft-20261028",
+      "status": "draft-awaiting-browser-review",
+      "record": "docs/ai-learning/reviews/2026-10-28-token-choice-rework.md",
+      "productionChanged": false
+    }
   }
 }

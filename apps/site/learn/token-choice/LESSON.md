@@ -67,3 +67,7 @@ node apps/site/learn/token-choice/model.test.mjs
 通过开发者教学适配评审，尚未进行真实学习者效果研究。加入完成后的“检验理解”：先预测固定分数和u不变、T从.8到2时的候选，再得到累计概率区间的因果反馈，最后回到同一组参数的图形验证。错误答案不是只显示叉号；说明mat上界.4551、floor上界.7311，以及u=.6219为何属于floor。
 
 本轮实查：课程入口可进入该场景；桌面端错误/正确选择与回到图形后T=2、floor27.6%一致；390×844手机布局下学习题完整可读。`npm run check`覆盖既有机械模板约束、新场景的独立模型测试与课程清单检查。真实设备与屏幕阅读器仍未实查。
+
+## Reopened visual review: draft repair — 2026-10-28
+
+The 32s probability-label defect has a source-level repair using shared geometry and ordered identity lanes. Numerical ownership/non-overlap/CDF/continuous-focus/reverse-seek checks cover3,620 poses. Full site checks pass. See `docs/ai-learning/reviews/2026-10-28-token-choice-rework.md` for precise changes and remaining gates. Browser connection was unavailable; no actual screenshots,390px legibility,lifecycle or4× craft acceptance were performed for this candidate. It is not published or visually accepted. Earlier published evidence remains historical and does not validate this new code.
