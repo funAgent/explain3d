@@ -70,3 +70,10 @@ Environment: current Chrome cloud browser, desktop screenshot1363×936, same-sou
 This is developer teaching/visual review, not measured learning-effect research or user aesthetic approval. The bounded question remains how fixed scores and one fixed uniform sample produce one chosen candidate. The first view names the input/scores and makes score≠probability explicit; the operation rail links exact values to colors; the morph changes representation without changing probability; a fixed-u temperature experiment changes the selected result and explains why. Those observations close the listed token-choice ownership, narrow-readability, continuity and contact defects for this revision. The same benchmark is still open for Attention, tokenization and embedding; no new topic is authorized to bypass that queue.
 
 Limits: no real learner sessions, physical phones, screen readers, other browser engines, OS preference switching or hardware performance measurements. No award/equivalent-fidelity claim. Public/working Skill alignment remains a distinct pending task; this release does not claim a new installed or cross-host-verified Skill.
+
+
+## Production follow-up receipt — 2026-10-28
+
+PR #6 reviewed head `e6b74581f6a126e1d0fca9e3b72fa615407c35c2`: branch CI40676595210 success; READY preview `dpl_GqK2VrNBQNNF4WFbzUy1pKd3hJvm`. Authenticated preview HTML/app/model/stage/geometry/style responses returned200 and matched the reviewed source exactly. Preview HTTP evidence is distinct from same-source local browser actions.
+
+Merged source `26defa3024d64af69f8a4da8f66e8d23287cb523` reached production READY as `dpl_2BqeL1ySywcQwDayqUr8CqyPzoeW`; main CI40676875334 succeeded. Actual public route https://explain.funagent.app/learn/token-choice/ loaded without sign-in. Production browser inspected default32s label ownership and completed the prediction check: correctfloor feedback and return-to-diagramT=2,u=.6219,floor27.6%. The stable result withdraws the ruler, avoiding result-card/tick occlusion. Course remains4/10; next quality rework isAttention, with new topics held until the other three are reviewed. Original publication receipts remain intact.

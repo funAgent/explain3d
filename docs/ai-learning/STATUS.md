@@ -2,7 +2,7 @@
 
 Updated: 2026-10-28 (Asia/Shanghai).
 
-Current total: **4 / 10 published**. **Visual acceptance reopened for all four on 2026-10-28 after user feedback.** Token-choice follow-up has passed developer visual/teaching review and awaits the checked release; the other three remain open. Next rework: **Attention**. New topics, including Transformer, are on hold until the four-scene rework queue passes the updated review gates.
+Current total: **4 / 10 published**. **Visual acceptance reopened for all four on 2026-10-28 after user feedback.** Token-choice follow-up has passed developer visual/teaching review and its checked release is verified in production; the other three remain open. Next rework: **Attention**. New topics, including Transformer, are on hold until the four-scene rework queue passes the updated review gates.
 
 See [Anatomy comparison and concrete findings](reviews/2026-10-28-anatomy-quality.md). Rework order: token-choice → attention → tokenization → embedding. Keep existing routes and mathematical/release evidence. Publication status does not mean the renewed visual gate has passed. The initial comparison changed no website implementation or distributed Skill. A subsequent token-choice repair exists only on the draft branch described below.
 
@@ -53,3 +53,10 @@ Draft branch `fix/token-choice-morph-craft-20261028` repairs moving-label owners
 ## Reviewed token-choice follow-up — 2026-10-28
 
 Browser returned; actual intermediate/reverse desktop frames,390px, native4× contact detail, natural completion/replay, keyboard, manual reduced-motion and controlled hidden-event paths reviewed. Fixed newly observed carrier/front intersection and narrow tick clipping as well as the original label defect. Exact operation rail and staged scales improve causal inspection. Full check passed. Review decision closes listed token-choice defects, without asserting measured learning gains or awards; the other three scenes and Skill distribution alignment remain open. See [full follow-up record](reviews/2026-10-28-token-choice-rework.md). Deployment receipt follows only after matching production SHA/READY and route verification.
+
+
+## Production follow-up receipt — 2026-10-28
+
+PR #6 reviewed head `e6b74581f6a126e1d0fca9e3b72fa615407c35c2`: branch CI40676595210 success; READY preview `dpl_GqK2VrNBQNNF4WFbzUy1pKd3hJvm`. Authenticated preview HTML/app/model/stage/geometry/style responses returned200 and matched the reviewed source exactly. Preview HTTP evidence is distinct from same-source local browser actions.
+
+Merged source `26defa3024d64af69f8a4da8f66e8d23287cb523` reached production READY as `dpl_2BqeL1ySywcQwDayqUr8CqyPzoeW`; main CI40676875334 succeeded. Actual public route https://explain.funagent.app/learn/token-choice/ loaded without sign-in. Production browser inspected default32s label ownership and completed the prediction check: correctfloor feedback and return-to-diagramT=2,u=.6219,floor27.6%. The stable result withdraws the ruler, avoiding result-card/tick occlusion. Course remains4/10; next quality rework isAttention, with new topics held until the other three are reviewed. Original publication receipts remain intact.

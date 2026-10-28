@@ -93,6 +93,13 @@
         "reviewDate": "2026-10-28",
         "review": "docs/ai-learning/reviews/2026-10-28-token-choice-rework.md",
         "evidenceType": "developer teaching and actual browser visual review; no learner-effect study"
+      },
+      "reworkRelease": {
+        "commit": "26defa3024d64af69f8a4da8f66e8d23287cb523",
+        "deployment": "dpl_2BqeL1ySywcQwDayqUr8CqyPzoeW",
+        "verifiedOn": "2026-10-28",
+        "route": "https://explain.funagent.app/learn/token-choice/",
+        "pr": 6
       }
     },
     {
@@ -158,9 +165,9 @@
     "candidate": {
       "scene": "token-choice",
       "branch": "fix/token-choice-morph-craft-20261028",
-      "status": "reviewed-awaiting-deployment",
+      "status": "published-and-production-verified",
       "record": "docs/ai-learning/reviews/2026-10-28-token-choice-rework.md",
-      "productionChanged": false
+      "productionChanged": true
     }
   }
 }

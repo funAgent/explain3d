@@ -76,3 +76,10 @@ The 32s probability-label defect has a source-level repair using shared geometry
 ## Follow-up visual and teaching review — 2026-10-28
 
 Browser access was restored. Implemented exact operation rail, staged scale visibility, larger narrow type, continuous annotations and carrier contact repair. Actual desktop/390px and native4× review, forward/reverse intermediate frames, natural completion/replay/Escape, controlled hidden event and manual reduced-motion setting were exercised. Prediction check retained fixedu and returnedT=2/floor27.6%. See `docs/ai-learning/reviews/2026-10-28-token-choice-rework.md` for observed results/screenshots and untested limits. The initial draft's no-browser statement is historical. This is developer review, not measured learning gains or external aesthetic endorsement.
+
+
+## Production follow-up receipt — 2026-10-28
+
+PR #6 reviewed head `e6b74581f6a126e1d0fca9e3b72fa615407c35c2`: branch CI40676595210 success; READY preview `dpl_GqK2VrNBQNNF4WFbzUy1pKd3hJvm`. Authenticated preview HTML/app/model/stage/geometry/style responses returned200 and matched the reviewed source exactly. Preview HTTP evidence is distinct from same-source local browser actions.
+
+Merged source `26defa3024d64af69f8a4da8f66e8d23287cb523` reached production READY as `dpl_2BqeL1ySywcQwDayqUr8CqyPzoeW`; main CI40676875334 succeeded. Actual public route https://explain.funagent.app/learn/token-choice/ loaded without sign-in. Production browser inspected default32s label ownership and completed the prediction check: correctfloor feedback and return-to-diagramT=2,u=.6219,floor27.6%. The stable result withdraws the ruler, avoiding result-card/tick occlusion. Course remains4/10; next quality rework isAttention, with new topics held until the other three are reviewed. Original publication receipts remain intact.
