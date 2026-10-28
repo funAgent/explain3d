@@ -1,10 +1,10 @@
 # AI principles course status
 
-Updated: 2026-10-28 (Asia/Shanghai).
+Updated: 2026-10-29 (Asia/Shanghai).
 
 Current total: **4 / 10 published**. **Visual acceptance reopened for all four on 2026-10-28 after user feedback.** Token-choice follow-up has passed developer visual/teaching review and its checked release is verified in production; the other three remain open. Next rework: **Attention**. New topics, including Transformer, are on hold until the four-scene rework queue passes the updated review gates.
 
-See [Anatomy comparison and concrete findings](reviews/2026-10-28-anatomy-quality.md). Rework order: token-choice → attention → tokenization → embedding. Keep existing routes and mathematical/release evidence. Publication status does not mean the renewed visual gate has passed. The initial comparison changed no website implementation or distributed Skill. A subsequent token-choice repair exists only on the draft branch described below.
+See [Anatomy comparison and concrete findings](reviews/2026-10-28-anatomy-quality.md). Rework order: token-choice → attention → tokenization → embedding. Keep existing routes and mathematical/release evidence. Publication status does not mean the renewed visual gate has passed. The initial comparison changed no website implementation or distributed Skill. The token-choice repair was subsequently released; the draft paragraph below is historical and superseded by its production receipt.
 
 Historical “Next” statements below describe the release sequence at that time and are superseded by this active work item and roadmap.
 
@@ -60,3 +60,8 @@ Browser returned; actual intermediate/reverse desktop frames,390px, native4× co
 PR #6 reviewed head `e6b74581f6a126e1d0fca9e3b72fa615407c35c2`: branch CI40676595210 success; READY preview `dpl_GqK2VrNBQNNF4WFbzUy1pKd3hJvm`. Authenticated preview HTML/app/model/stage/geometry/style responses returned200 and matched the reviewed source exactly. Preview HTTP evidence is distinct from same-source local browser actions.
 
 Merged source `26defa3024d64af69f8a4da8f66e8d23287cb523` reached production READY as `dpl_2BqeL1ySywcQwDayqUr8CqyPzoeW`; main CI40676875334 succeeded. Actual public route https://explain.funagent.app/learn/token-choice/ loaded without sign-in. Production browser inspected default32s label ownership and completed the prediction check: correctfloor feedback and return-to-diagramT=2,u=.6219,floor27.6%. The stable result withdraws the ruler, avoiding result-card/tick occlusion. Course remains4/10; next quality rework isAttention, with new topics held until the other three are reviewed. Original publication receipts remain intact.
+
+
+## Attention causal rework draft — 2026-10-29
+
+Branch `rework/attention-causal-20261029`: persistent position rows, exact operation rail, mask trace and nonzero contribution movement implemented. npm run check and17,298 new pose cases passed. Preliminary desktop Softmax observation completed. This is **not released or visually accepted**: component formation/chapter continuity and the390px/4×/lifecycle matrix still need work. Continue this candidate rather than starting a new topic. [Exact evidence and remaining gates](reviews/2026-10-29-attention-rework.md). Production remains unchanged.

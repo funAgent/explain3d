@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-28",
+  "updated": "2026-10-29",
   "target": 10,
   "cadenceHours": 12,
   "releasePolicy": "One reviewed scene per iteration; continue a failed scene before advancing.",
@@ -163,11 +163,11 @@
     ],
     "resumeAfter": "All four published scenes pass the reopened craft and causal-motion gates.",
     "candidate": {
-      "scene": "token-choice",
-      "branch": "fix/token-choice-morph-craft-20261028",
-      "status": "published-and-production-verified",
-      "record": "docs/ai-learning/reviews/2026-10-28-token-choice-rework.md",
-      "productionChanged": true
+      "scene": "attention",
+      "branch": "rework/attention-causal-20261029",
+      "status": "draft-needs-causal-and-browser-review",
+      "record": "docs/ai-learning/reviews/2026-10-29-attention-rework.md",
+      "productionChanged": false
     }
   }
 }

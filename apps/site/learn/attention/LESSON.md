@@ -15,3 +15,8 @@ Managed Chrome desktop (1363×936) and 390×844 iframe viewport; not physical-ph
 Observed: complete playback reached 48/48 and restored configuration. Backward seek 48→25→16 rebuilt earlier phases; resume/Escape pause, previous/next, Home/End, replay and reset were exercised. During playback configuration disappeared from the accessibility tree with focus on the persistent pause control. Reduced-motion toggle was enabled; t=31.1 displayed the stable full contribution bar. Query A produced 4.248; default C produced 15.752; changing future V to 1000 preserved output 15.752. The mobile quiz wrong/correct feedback and verify flow returned q=0, D=1000, output 10.000 and visible weights 1/3 each. Dialog fit in the narrow viewport.
 
 `evals/browser/attention-lifecycle.html` tested the actual app's visibility handler using controlled document-hidden events: hidden paused at ~0.05s, configuration restored; visible did not auto-resume or jump. This is event-path testing, not actual OS hidden-tab observation. OS-level preference switching, physical devices, screen-reader devices and other engines remain untested. Full-site checks including mechanical invariants passed. Preview and actual production evidence will be recorded separately.
+
+
+## Rework draft — 2026-10-29
+
+See `docs/ai-learning/reviews/2026-10-29-attention-rework.md`. Exact operation/row pose tests passed; preliminary desktop observation only. Not visually accepted or published. Original publication evidence does not validate this new candidate.

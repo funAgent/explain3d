@@ -1,1 +1,78 @@
-{"id":"attention","question":"当前查询如何把可见位置的 V 汇成一个输出？","durationSeconds":48,"inputs":{"alpha":[-1,0,1],"futureV":{"min":0,"max":1000,"step":10}},"queryPosition":2,"keyDimension":2,"valueDimension":1,"keys":[[-1,0],[0,0],[1,0],[2,0]],"values":[0,10,20,"futureV"],"relations":["q=[sqrt(2)*alpha,0]","s=qK^T/sqrt(2)","mask j>2 to -Infinity before Softmax","p=Softmax(masked scores)","o=sum(p_j*V_j)"],"mapping":{"color":"position identity","probabilityBar":"0..1 within each channel","contributionBar":"length of p_j*V_j; shared total scale 0..20","connections":"dependencies, not physical motion or measured timing"},"experiment":"Keep K/V fixed and change q; then vary masked future V and show output invariance.","transfer":"q=0, futureV=1000 gives mean of visible 0,10,20 = 10, not max or four-way mean.","sources":["https://arxiv.org/abs/1706.03762","https://docs.pytorch.org/docs/2.14/generated/torch.nn.functional.scaled_dot_product_attention.html"],"simplifications":["Authored Q/K/V, no model or semantic interpretation","One causal row and head; V scalar","No learned projection, positions, dropout, output projection, residual, training or token sampling","SVG teaching geometry, not actual model hardware"]}
+{
+  "id": "attention",
+  "question": "当前查询如何把可见位置的 V 汇成一个输出？",
+  "durationSeconds": 48,
+  "inputs": {
+    "alpha": [
+      -1,
+      0,
+      1
+    ],
+    "futureV": {
+      "min": 0,
+      "max": 1000,
+      "step": 10
+    }
+  },
+  "queryPosition": 2,
+  "keyDimension": 2,
+  "valueDimension": 1,
+  "keys": [
+    [
+      -1,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      2,
+      0
+    ]
+  ],
+  "values": [
+    0,
+    10,
+    20,
+    "futureV"
+  ],
+  "relations": [
+    "q=[sqrt(2)*alpha,0]",
+    "s=qK^T/sqrt(2)",
+    "mask j>2 to -Infinity before Softmax",
+    "p=Softmax(masked scores)",
+    "o=sum(p_j*V_j)"
+  ],
+  "mapping": {
+    "color": "position identity",
+    "probabilityBar": "0..1 within each channel",
+    "contributionBar": "length of p_j*V_j; shared total scale 0..20",
+    "connections": "dependencies, not physical motion or measured timing"
+  },
+  "experiment": "Keep K/V fixed and change q; then vary masked future V and show output invariance.",
+  "transfer": "q=0, futureV=1000 gives mean of visible 0,10,20 = 10, not max or four-way mean.",
+  "sources": [
+    "https://arxiv.org/abs/1706.03762",
+    "https://docs.pytorch.org/docs/2.14/generated/torch.nn.functional.scaled_dot_product_attention.html"
+  ],
+  "simplifications": [
+    "Authored Q/K/V, no model or semantic interpretation",
+    "One causal row and head; V scalar",
+    "No learned projection, positions, dropout, output projection, residual, training or token sampling",
+    "SVG teaching geometry, not actual model hardware"
+  ],
+  "reworkDraft": {
+    "date": "2026-10-29",
+    "layout": "Persistent position rows, exact operation rail, raw exponential denominator, causal mask shutter and nonzero value contribution traces",
+    "notAccepted": [
+      "Q/K component formation needs stronger causal motion",
+      "390px and4x evidence incomplete",
+      "Full lifecycle/preview/production verification pending"
+    ]
+  }
+}
