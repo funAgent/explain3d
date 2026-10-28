@@ -27,7 +27,12 @@
       "published": true,
       "releaseCommit": "bb9c7d9eb0840a688bf3ef6e8f45471aa2c4e1f5",
       "verifiedDeployment": "dpl_8jU8UL9yGByo1v3dQEPqpeBT8fUF",
-      "verifiedOn": "2026-10-27"
+      "verifiedOn": "2026-10-27",
+      "visualAcceptance": {
+        "status": "needs-rework",
+        "reviewDate": "2026-10-28",
+        "review": "docs/ai-learning/reviews/2026-10-28-anatomy-quality.md"
+      }
     },
     {
       "id": "embedding",
@@ -39,7 +44,12 @@
       "published": true,
       "releaseCommit": "2420d77c370a0e888e64c0c13e87f923b5cefb9c",
       "verifiedDeployment": "dpl_6L6uGjakR9Mz1i7masoE4f19FEbb",
-      "verifiedOn": "2026-10-27"
+      "verifiedOn": "2026-10-27",
+      "visualAcceptance": {
+        "status": "needs-rework",
+        "reviewDate": "2026-10-28",
+        "review": "docs/ai-learning/reviews/2026-10-28-anatomy-quality.md"
+      }
     },
     {
       "id": "attention",
@@ -51,7 +61,12 @@
       "published": true,
       "releaseCommit": "49086e255b9527202f467103d7d0353b81627632",
       "verifiedDeployment": "dpl_H4cKbv114YSRUKfzEGFXcdUXfE9P",
-      "verifiedOn": "2026-10-28"
+      "verifiedOn": "2026-10-28",
+      "visualAcceptance": {
+        "status": "needs-rework",
+        "reviewDate": "2026-10-28",
+        "review": "docs/ai-learning/reviews/2026-10-28-anatomy-quality.md"
+      }
     },
     {
       "id": "transformer",
@@ -72,7 +87,12 @@
       "published": true,
       "releaseCommit": "fc03f80a1953a82d7ad104fb90307bf5cb2d131a",
       "verifiedDeployment": "dpl_8KskYdCLpm2uudUGezEzk3RiFJyD",
-      "verifiedOn": "2026-10-26"
+      "verifiedOn": "2026-10-26",
+      "visualAcceptance": {
+        "status": "needs-rework",
+        "reviewDate": "2026-10-28",
+        "review": "docs/ai-learning/reviews/2026-10-28-anatomy-quality.md"
+      }
     },
     {
       "id": "autoregression",
@@ -119,5 +139,20 @@
       "route": null,
       "published": false
     }
-  ]
+  ],
+  "qualityReview": {
+    "date": "2026-10-28",
+    "status": "reopened",
+    "basis": "User requested renewed comparison against Anatomy; publication does not imply visual acceptance.",
+    "report": "docs/ai-learning/reviews/2026-10-28-anatomy-quality.md",
+    "holdNewTopics": true,
+    "activeScene": "token-choice",
+    "reworkOrder": [
+      "token-choice",
+      "attention",
+      "tokenization",
+      "embedding"
+    ],
+    "resumeAfter": "All four published scenes pass the reopened craft and causal-motion gates."
+  }
 }

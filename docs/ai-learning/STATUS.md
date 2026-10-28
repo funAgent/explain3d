@@ -2,7 +2,11 @@
 
 Updated: 2026-10-28 (Asia/Shanghai).
 
-Current total: **4 / 10 published**. Next active topic: **Transformer layer**.
+Current total: **4 / 10 published**. **Visual acceptance reopened for all four on 2026-10-28 after user feedback.** Active work: **Token choice quality rework**, starting with misbound probability labels at 32 seconds. New topics, including Transformer, are on hold until the four-scene rework queue passes the updated review gates.
+
+See [Anatomy comparison and concrete findings](reviews/2026-10-28-anatomy-quality.md). Rework order: token-choice → attention → tokenization → embedding. Keep existing routes and mathematical/release evidence. Publication status does not mean the renewed visual gate has passed. This review changes no website implementation or distributed Skill.
+
+Historical “Next” statements below describe the release sequence at that time and are superseded by this active work item and roadmap.
 
 The user authorized ten scenes, an iteration every twelve hours, independent learner-oriented review and publication after acceptance. A recurring task has been created. Each scheduled run works on one scene; failure keeps that scene active rather than counting it as complete.
 
