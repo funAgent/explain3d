@@ -89,9 +89,10 @@
       "verifiedDeployment": "dpl_8KskYdCLpm2uudUGezEzk3RiFJyD",
       "verifiedOn": "2026-10-26",
       "visualAcceptance": {
-        "status": "needs-rework",
+        "status": "reviewed-pass",
         "reviewDate": "2026-10-28",
-        "review": "docs/ai-learning/reviews/2026-10-28-anatomy-quality.md"
+        "review": "docs/ai-learning/reviews/2026-10-28-token-choice-rework.md",
+        "evidenceType": "developer teaching and actual browser visual review; no learner-effect study"
       }
     },
     {
@@ -146,13 +147,20 @@
     "basis": "User requested renewed comparison against Anatomy; publication does not imply visual acceptance.",
     "report": "docs/ai-learning/reviews/2026-10-28-anatomy-quality.md",
     "holdNewTopics": true,
-    "activeScene": "token-choice",
+    "activeScene": "attention",
     "reworkOrder": [
       "token-choice",
       "attention",
       "tokenization",
       "embedding"
     ],
-    "resumeAfter": "All four published scenes pass the reopened craft and causal-motion gates."
+    "resumeAfter": "All four published scenes pass the reopened craft and causal-motion gates.",
+    "candidate": {
+      "scene": "token-choice",
+      "branch": "fix/token-choice-morph-craft-20261028",
+      "status": "reviewed-awaiting-deployment",
+      "record": "docs/ai-learning/reviews/2026-10-28-token-choice-rework.md",
+      "productionChanged": false
+    }
   }
 }

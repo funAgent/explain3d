@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node evals/verify.mjs && node apps/site/learn/token-choice/model.test.mjs && node evals/verify-token-choice.mjs && node evals/verify-course.mjs && node apps/site/learn/tokenization/model.test.mjs && node apps/site/learn/embedding/model.test.mjs && node apps/site/learn/attention/model.test.mjs",
+    "test": "node evals/verify.mjs && node apps/site/learn/token-choice/model.test.mjs && node apps/site/learn/token-choice/geometry.test.mjs && node evals/verify-token-choice.mjs && node evals/verify-course.mjs && node apps/site/learn/tokenization/model.test.mjs && node apps/site/learn/embedding/model.test.mjs && node apps/site/learn/attention/model.test.mjs",
     "check": "npm test && npm run build"
   },
   "engines": {

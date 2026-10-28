@@ -1,3 +1,5 @@
+import {operation as sampleOperation} from './model.mjs';
+import {chartBandGeometry} from './geometry.mjs';
 /**
  * A mathematical scene for Explain3D. Original vector geometry, inspired by
  * Anatomy's disciplined strokes and surface hierarchy. No wheel geometry reused.
@@ -18,18 +20,18 @@ const css=`
  svg{display:block;width:100%;height:100%;overflow:visible;contain:layout style}
  path,line,rect,circle{vector-effect:non-scaling-stroke}
  text{user-select:none;paint-order:stroke;stroke:none;text-rendering:geometricPrecision}
- .axis{font:11px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8290a1}
+ .axis{font:18px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8290a1}
  .token{font:25px Georgia,"Times New Roman",serif;fill:#3a4657;letter-spacing:.1px}
- .translation{font-size:11px;fill:#7e8795}
+ .translation{font-size:14px;fill:#7e8795}
  .number{font:18px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#485872;font-variant-numeric:tabular-nums}
  .note{font-size:12px;fill:#778292;letter-spacing:.15px}
  .formula{font:17px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#5a6680;font-variant-numeric:tabular-nums}
- .small{font:11px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8992a0}
+ .small{font:18px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8992a0}
  .fine{fill:none;stroke:#c3ccd5;stroke-width:.6;stroke-linecap:round;stroke-linejoin:round}
  .guide{fill:none;stroke:#b2bfce;stroke-width:.6;stroke-dasharray:2 4}
  .grid{stroke:#dfe5ea;stroke-width:.5}
  .bright{stroke:#fff;stroke-width:1;fill:none}
- .mobile .axis{font-size:13px}.mobile .number{font-size:18px}.mobile .note{font-size:13px}.mobile .small{font-size:12px}.mobile .translation{font-size:12px}.mobile .token{font-size:23px}.mobile .formula{font-size:16px}
+ .mobile .axis{font-size:18px}.mobile .number{font-size:18px}.mobile .note{font-size:16px}.mobile .small{font-size:18px}.mobile .translation{font-size:16px}.mobile .token{font-size:22px}.mobile .formula{font-size:18px}
 `;
 
 function node(tag,attrs={},parent){const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));parent?.append(n);return n;}
@@ -47,7 +49,11 @@ export function createStage(host){
  const floorGradient=node('linearGradient',{id:'tc-floor',x1:0,y1:0,x2:0,y2:1},defs);node('stop',{offset:0,'stop-color':'#fdfefe'},floorGradient);node('stop',{offset:1,'stop-color':'#edf1f4'},floorGradient);
  const goldGradient=node('linearGradient',{id:'tc-gold',x1:0,y1:0,x2:0,y2:1},defs);node('stop',{offset:0,'stop-color':'#f4d799'},goldGradient);node('stop',{offset:1,'stop-color':'#d7ac57'},goldGradient);
  const glow=node('filter',{id:'tc-shadow',x:'-40%',y:'-100%',width:'180%',height:'300%'},defs);node('feGaussianBlur',{stdDeviation:4},glow);
- const gradients=COLORS.map((c,i)=>{const g=node('linearGradient',{id:`tc-bar-${i}`,x1:0,y1:0,x2:1,y2:0},defs);const a=node('stop',{offset:0,'stop-color':c,'stop-opacity':.48},g),b=node('stop',{offset:.83,'stop-color':c,'stop-opacity':.28},g);node('stop',{offset:1,'stop-color':'#fff','stop-opacity':.7},g);return[a,b];});
+ const gradients=COLORS.map((c,i)=>{const g=node('linearGradient',{id:`tc-bar-${i}`,x1:0,y1:0,x2:1,y2:0},defs);const a=node('stop',{offset:0,'stop-color':c,'stop-opacity':.65},g),b=node('stop',{offset:.83,'stop-color':c,'stop-opacity':.42},g);node('stop',{offset:1,'stop-color':'#fff','stop-opacity':.4},g);return[a,b];});
+ const operationRail=node('g',{'data-operation':'exact-values'},svg),railBody=node('path',{fill:'url(#tc-floor)',stroke:'#bcc8d4','stroke-width':.7},operationRail),railLower=node('path',{fill:'none',stroke:'#d4dce3','stroke-width':1},operationRail),railDivider=node('path',{class:'fine'},operationRail);
+ const railToken=node('text',{class:'token','text-anchor':'middle'},operationRail),railInput=node('text',{class:'number','text-anchor':'middle'},operationRail),railOperator=node('text',{class:'number','text-anchor':'middle'},operationRail),railOutput=node('text',{class:'number','text-anchor':'middle'},operationRail),railArrow1=node('text',{class:'number','text-anchor':'middle'},operationRail),railArrow2=node('text',{class:'number','text-anchor':'middle'},operationRail);
+ text(railArrow1,'→');text(railArrow2,'→');
+ const railFlow=node('path',{fill:'none','stroke-width':.9,'stroke-dasharray':'2 4'},operationRail),railDot=node('circle',{r:3,stroke:'#fff','stroke-width':1},operationRail);
  const axisGroup=node('g',{},svg),axisTicks=[];
  const plotBacking=node('path',{fill:'#f5f7f9',opacity:.6},axisGroup);
  const gridGroup=node('g',{},axisGroup);
@@ -72,6 +78,8 @@ export function createStage(host){
   text(label,token);text(translation,CHINESE[i]);
   return{g,ghost,side,front,top,shine,seam,foot,operation,operationLine,operationDot,number,original,labelGroup,dot,label,translation};
  });
+ const bandDock=node('g',{opacity:0},baseGroup.parentNode),dockEdge=node('path',{fill:'#eef1f3',stroke:'#bec9d3','stroke-width':.6},bandDock),dockLip=node('path',{fill:'none',stroke:'#fff','stroke-width':1},bandDock);
+ svg.insertBefore(bandDock,barGroup);
  const bandScale=node('g',{opacity:0},svg),bandTicks=[];
  for(let i=0;i<=20;i++){const tick=node('line',{class:'fine'},bandScale);const label=i%5===0?node('text',{class:'axis','text-anchor':'middle'},bandScale):null;bandTicks.push({tick,label});}
  const bandBounds=node('g',{},bandScale),bounds=Array.from({length:3},()=>node('path',{fill:'none',stroke:'#b0bdca','stroke-width':.65},bandBounds));
@@ -83,17 +91,16 @@ export function createStage(host){
  let lastFrame=null,disposed=false,anchors={},width=1000,height=560;
  function render(frame){
   if(disposed)return;lastFrame=frame;
-  const mobile=host.getBoundingClientRect().width<600; width=mobile?560:1000;height=mobile?430:420;
+  const mobile=host.getBoundingClientRect().width<600;
+  const layout=chartBandGeometry(frame,mobile); ({width,height}=layout);
   attr(svg,{viewBox:`0 0 ${width} ${height}`,class:mobile?'mobile':'desktop'});
   const phase=clamp(frame.phase,0,5),pr=clamp(frame.progress??0),P=frame.p,T=frame.temperature;
   const cdf=frame.cdf?.length===5?frame.cdf:[0,...P.map((_,i)=>P.slice(0,i+1).reduce((a,b)=>a+b,0))];
-  const chosen=frame.selected,base=mobile?290:285,plotH=mobile?214:225,barW=mobile?62:110,dx=mobile?7:11,dy=mobile?5:8;
-  const xs=mobile?[91,202,313,424]:[130,345,560,775];
-  const axisX=mobile?64:87,plotEnd=xs[3]+barW+dx;
-  const bandX=mobile?52:110,bandW=mobile?456:780,bandY=170,bandH=mobile?68:72;
-  let morph=phase>3?1:phase===3?ease((pr-.27)/.46):0;
-  if(frame.reducedMotion&&phase===3)morph=pr>=.5?1:0;
-  const isBand=morph>.99,chartOpacity=1-morph;
+  const chosen=frame.selected,dx=mobile?5:11,dy=mobile?4:8;
+  const {base,plotH,barW,xs,bandX,bandW,bandY,bandH,morph}=layout;
+  const axisX=mobile?68:87,plotEnd=xs[3]+barW+dx;
+  const chartOpacity=1-ease(morph/.22);
+  const operation=sampleOperation(frame),showOperation=phase===1||phase===2||phase===3&&pr<.27;
   let values=frame.logits,max=4,axisTitle='原始分数 z';
   if(phase===1){values=frame.scaled;max=8;axisTitle='缩放分数 z / T';}
   if(phase===2){values=frame.weights;max=Math.max(...values);axisTitle='指数权重 exp(z / T)';}
@@ -101,7 +108,7 @@ export function createStage(host){
   attr(axisGroup,{opacity:chartOpacity});attr(baseGroup,{opacity:chartOpacity});
   attr(plotBacking,{d:poly([[axisX,base],[axisX,base-plotH],[plotEnd,base-plotH],[plotEnd,base]])});
   attr(axisSpine,{d:`M${axisX} ${base-plotH-8}V${base}H${plotEnd+12}`});
-  attr(axisName,{x:axisX,y:base-plotH-25});text(axisName,axisTitle);
+  attr(axisName,{x:plotEnd,y:base-plotH-13,'text-anchor':'end'});text(axisName,axisTitle);
   axisTicks.forEach((a,i)=>{const y=base-plotH*i/4;attr(a.line,{x1:axisX,y1:y,x2:plotEnd,y2:y});attr(a.tick,{x1:axisX-4,y1:y,x2:axisX,y2:y});attr(a.label,{x:axisX-12,y:y+4});text(a.label,phase>=3?`${i*25}%`:value(max*i/4));});
   const bx=xs[0]-25,bw=plotEnd-bx+24,by=base+8;
   attr(baseShadow,{d:poly([[bx-6,by+12],[bx+bw+12,by+12],[bx+bw+19,by+26],[bx,by+26]])});
@@ -111,11 +118,13 @@ export function createStage(host){
   bars.forEach((b,i)=>{
    const color=frame.color===false?['#8e9bad','#9eabba','#aeb9c5','#bdc7d0'][i]:COLORS[i];
    gradients[i].forEach(stop=>stop.setAttribute('stop-color',color));attr(b.side,{fill:color});attr(b.front,{stroke:color});attr(b.dot,{fill:color});attr(b.seam,{stroke:color});
-   const h=Math.max(0,values[i]/max*plotH),targetX=bandX+cdf[i]*bandW,targetW=P[i]*bandW;
-   const x=mix(xs[i],targetX,morph),y=mix(base-h,bandY,morph),w=mix(barW,targetW,morph),hh=mix(h,bandH,morph);
-   const depthX=mix(dx,mobile?5:8,morph),depthY=mix(dy,mobile?4:6,morph);
+   const h=Math.max(0,values[i]/max*plotH);
+   const owned=layout.candidates[i];
+   const x=phase>=3?owned.x:xs[i],y=phase>=3?owned.y:base-h,w=phase>=3?owned.w:barW,hh=phase>=3?owned.h:h;
+   const depthX=Math.min(w/3,mix(dx,mobile?4:8,morph)),depthY=mix(dy,mobile?3:6,morph);
    const active=phase>=4&&chosen!==null,muted=active&&i!==chosen;
-   attr(b.g,{opacity:muted?.49:1});
+   attr(b.g,{opacity:muted?.72:1});
+   attr(b.front,{'stroke-width':showOperation&&operation.candidate===i?1.3:.65});
    attr(b.front,{d:bevel(x,y,w,Math.max(.5,hh),Math.min(2,w/5))});
    attr(b.side,{d:poly([[x+w,y],[x+w+depthX,y-depthY],[x+w+depthX,y+hh-depthY],[x+w,y+hh]])});
    attr(b.top,{d:poly([[x,y],[x+depthX,y-depthY],[x+w+depthX,y-depthY],[x+w,y]]),opacity:hh>.5?1:0});
@@ -127,23 +136,55 @@ export function createStage(host){
    const ox=xs[i]+barW+17,oy=base-ghostH,ey=base-h,travel=frame.reducedMotion?1:ease((pr-.12)/.65);
    attr(b.operationLine,{d:`M${ox-4} ${f(oy)}H${ox}V${f(ey)}H${ox-4}`,stroke:color});
    attr(b.operationDot,{cx:ox,cy:mix(oy,ey,travel),fill:color});
-   const nx=xs[i]+barW/2;attr(b.number,{x:nx,y:base-h-18,opacity:chartOpacity});text(b.number,phase>=3?percent(P[i]):value(values[i]));
+   const nx=xs[i]+barW/2;
+   attr(b.number,{x:phase>=3?owned.valueX:nx,y:phase>=3?owned.valueY:base-h-18,opacity:1});text(b.number,phase>=3?percent(P[i]):value(values[i]));
    attr(b.original,{x:nx,y:base+22,opacity:phase===1?1:0});text(b.original,`z = ${frame.logits[i]}`);
-   const lx=mix(nx,bandX+bandW*(i+.5)/4,morph),ly=mix(base+(phase===1?53:48),bandY+bandH+69,morph);
-   attr(b.labelGroup,{transform:`translate(${f(lx)} ${f(ly)})`});attr(b.label,{x:0,y:0});attr(b.translation,{x:0,y:19});attr(b.dot,{cx:-(mobile?25:28),cy:-7});
-   text(b.translation,isBand?percent(P[i]):CHINESE[i]);
+   const lx=phase>=3?owned.labelX:nx,ly=phase>=3?owned.labelY:base+(phase===1?53:48);
+   attr(b.labelGroup,{transform:`translate(${f(lx)} ${f(ly)})`});attr(b.label,{x:0,y:0});attr(b.translation,{x:0,y:19});attr(b.dot,{cx:-(mobile?29:35),cy:-7});
+   attr(b.translation,{opacity:phase>=3?0:1});text(b.translation,CHINESE[i]);
   });
-  attr(bandScale,{opacity:morph});
+  attr(bandDock,{opacity:morph});
+  const {x:dockX,y:dockY,end:dockEnd}=layout.dock;
+  attr(dockEdge,{d:bevel(dockX,dockY,dockEnd-dockX,12,2)});
+  attr(dockLip,{d:`M${dockX+2} ${dockY+1}H${dockEnd-2}`});
+  attr(bandScale,{opacity:phase===5?0:ease((morph-.8)/.2)});
   bandTicks.forEach((a,i)=>{const x=bandX+bandW*i/20;attr(a.tick,{x1:x,y1:bandY-18,x2:x,y2:bandY-(i%5===0?29:23)});if(a.label){attr(a.label,{x,y:bandY-38});text(a.label,phase>=4?(i/20).toFixed(i===0||i===20?0:2):`${i*5}%`);}});
   bounds.forEach((p,i)=>{const x=bandX+cdf[i+1]*bandW;attr(p,{d:`M${f(x)} ${bandY+bandH+4}V${bandY+bandH+12}`});});
-  attr(bandLeaders,{opacity:morph});
-  labelLeaders.forEach((leader,i)=>{const sx=bandX+(cdf[i]+P[i]/2)*bandW,ex=bandX+bandW*(i+.5)/4,sy=bandY+bandH+7,ey=bandY+bandH+40;attr(leader,{d:`M${f(sx)} ${sy}C${f(sx)} ${sy+14},${f(ex)} ${ey-13},${f(ex)} ${ey}`,stroke:frame.color===false?'#a7b3c0':COLORS[i],opacity:.55});});
-  const formulaY=mobile?378:365,fw=mobile?490:570;
+  attr(bandLeaders,{opacity:phase>=3?1:0});
+  labelLeaders.forEach((leader,i)=>{const {x:sx,y:sy,endX:ex,endY:ey}=layout.candidates[i].leader;attr(leader,{d:`M${f(sx)} ${f(sy)}C${f(sx)} ${f(sy+9)},${f(ex)} ${f(ey-9)},${f(ex)} ${f(ey)}`,stroke:frame.color===false?'#a7b3c0':COLORS[i],opacity:.85});});
+  attr(operationRail,{opacity:phase===3?1-ease((pr-.22)/.05):showOperation?1:0,'aria-hidden':String(!showOperation)});
+  if(operation){
+   const i=operation.candidate,c=COLORS[i],rw=mobile?374:650,rx=(width-rw)/2,ry=9;
+   attr(railBody,{d:bevel(rx,ry,rw,49,5)});attr(railLower,{d:`M${rx+5} 61H${rx+rw-5}`});
+   const points=mobile?[rx+29,rx+88,rx+141,rx+210,rx+277,rx+329]:[rx+52,rx+155,rx+237,rx+325,rx+420,rx+538];
+   const [tx,ix,a1x,ox,a2x,outx]=points;
+   attr(railToken,{x:tx,y:39,fill:c,'font-size':mobile?19:25});text(railToken,TOKENS[i]);
+   attr(railDivider,{d:`M${rx+(mobile?56:100)} 18V49`});
+   attr(railInput,{x:ix,y:39});text(railInput,value(operation.input));
+   attr(railOperator,{x:ox,y:39,fill:c});text(railOperator,operation.operator);
+   attr(railOutput,{x:outx,y:39,fill:c});text(railOutput,phase===3?percent(operation.output):value(operation.output));
+   attr(railArrow1,{x:a1x,y:39});attr(railArrow2,{x:a2x,y:39});
+   const targetX=xs[i]+barW/2,targetY=base-values[i]/max*plotH-30;
+   attr(railFlow,{d:`M${ix} 47H${outx}V73H${targetX}V${targetY}`,stroke:c});
+   const travel=frame.reducedMotion?1:operation.progress;
+   let dotX,dotY;
+   if(travel<.65){dotX=mix(ix,outx,ease(travel/.65));dotY=47;}
+   else {
+    const path=[[outx,47],[outx,73],[targetX,73],[targetX,targetY]];
+    const lengths=path.slice(1).map((p,j)=>Math.hypot(p[0]-path[j][0],p[1]-path[j][1]));
+    let distance=ease((travel-.65)/.35)*lengths.reduce((a,b)=>a+b,0),j=0;
+    while(j<lengths.length-1&&distance>lengths[j])distance-=lengths[j++];
+    const t=lengths[j]?distance/lengths[j]:1;
+    dotX=mix(path[j][0],path[j+1][0],t);dotY=mix(path[j][1],path[j+1][1],t);
+   }
+   attr(railDot,{cx:dotX,cy:dotY,fill:c});
+  }
+  const formulaY=mobile?378:365,fw=mobile?378:570;
   attr(formulaBack,{d:bevel((width-fw)/2,formulaY,fw,44,7)});attr(formulaBottom,{d:`M${(width-fw)/2+7} ${formulaY+47}H${(width+fw)/2-7}`});attr(formulaLabel,{x:width/2,y:formulaY+(phase===2?18:28)});
   const sum=frame.weights.reduce((a,b)=>a+b,0),selected=chosen??0;
   const formulas=[`z = [ ${frame.logits.join(' , ')} ]`,`z / T     T = ${T.toFixed(2)}`,`wᵢ = exp(zᵢ / T)`,`pᵢ = wᵢ / Σw     Σp = 100%`,`u = ${frame.u.toFixed(3)}     u ∈ [0, 1)`,`本次选择  ${TOKENS[selected]}   ·   ${percent(P[selected])}`];
   text(formulaLabel,formulas[phase]);
-  attr(weightScaleNote,{x:width/2,y:formulaY+35,opacity:phase===2?1:0});text(weightScaleNote,`高度按最大权重 ${value(max)} 缩放 · Σw = ${value(sum)}`);
+  attr(weightScaleNote,{x:width/2,y:formulaY+35,opacity:phase===2?1:0});text(weightScaleNote,mobile?`量程 ${value(max)} · Σw = ${value(sum)}`:`高度按最大权重 ${value(max)} 缩放 · Σw = ${value(sum)}`);
   const cursorTravel=phase>4?1:frame.reducedMotion?(pr>=.8?1:0):ease(pr/.8),cursorX=bandX+frame.u*bandW*cursorTravel;
   attr(cursorGroup,{opacity:phase===4?1:0});attr(cursorGlow,{x1:cursorX,y1:bandY-10,x2:cursorX,y2:bandY+bandH+8});attr(cursorLine,{x1:cursorX,y1:bandY-10,x2:cursorX,y2:bandY+bandH+8});attr(cursorHead,{d:poly([[cursorX-6,bandY-19],[cursorX+6,bandY-19],[cursorX+6,bandY-11],[cursorX,bandY-5],[cursorX-6,bandY-11]])});
   attr(cursorReadout,{x:width/2,y:bandY-85,opacity:0});text(cursorReadout,chosen===null?'定位随机数':'已落入对应区间');attr(cursorNumber,{x:width/2,y:bandY-60,opacity:0});text(cursorNumber,chosen===null?`x = ${(frame.u*cursorTravel).toFixed(3)}`:`u = ${frame.u.toFixed(3)}`);
@@ -153,8 +194,8 @@ export function createStage(host){
   attr(resultLink,{d:`M${f(resultX)} ${f(resultY+resultH)}C${f(resultX)} ${f(resultY+resultH+12)},${f(segmentX)} ${bandY-16},${f(segmentX)} ${bandY+8}`});
   attr(resultShadow,{x:resultX-resultW/2+2,y:resultY+6,width:resultW,height:resultH});
   attr(resultSide,{d:poly([[resultX-resultW/2,resultY+resultH-5],[resultX+resultW/2,resultY+resultH-5],[resultX+resultW/2+7,resultY+resultH-12],[resultX+resultW/2+7,resultY+resultH-4],[resultX+resultW/2,resultY+resultH+3],[resultX-resultW/2,resultY+resultH+3]])});
-  attr(resultPlate,{x:resultX-resultW/2,y:resultY,width:resultW,height:resultH});attr(resultAccent,{x:resultX-resultW/2+15,y:resultY+12,width:resultW-30,fill:COLORS[selected]});attr(resultToken,{x:resultX,y:resultY+43});text(resultToken,TOKENS[selected]);attr(resultProbability,{x:resultX,y:resultY+62});text(resultProbability,`${CHINESE[selected]}  ·  ${percent(P[selected])}`);attr(resultTitle,{x:resultX,y:resultY-13});text(resultTitle,'SELECTED TOKEN');
-  anchors={scores:[xs[0]+barW*.5,base-frame.logits[0]/4*plotH*.72],temperature:[xs[0]+barW+17,base-frame.scaled[0]/8*plotH*.72],weights:[xs[0]+barW/2,base-plotH*.7],probability:morph>.5?[bandX+P[0]*bandW*.5,bandY+bandH/2]:[xs[0]+barW/2,base-P[0]*plotH*.7],cursor:[cursorX,bandY+bandH/2],sampling:[cursorX,bandY+bandH/2],result:[resultX,resultY+12]};
+  attr(resultPlate,{x:resultX-resultW/2,y:resultY,width:resultW,height:resultH});attr(resultAccent,{x:resultX-resultW/2+15,y:resultY+12,width:resultW-30,fill:COLORS[selected]});attr(resultToken,{x:resultX,y:resultY+43});text(resultToken,TOKENS[selected]);attr(resultProbability,{x:resultX,y:resultY+62});text(resultProbability,`${CHINESE[selected]}  ·  ${percent(P[selected])}`);attr(resultTitle,{x:resultX,y:resultY-13});text(resultTitle,'选中结果');
+  anchors={scores:[xs[0]+barW*.5,base-frame.logits[0]/4*plotH*.72],temperature:[width/2,33],weights:[width/2,33],probability:[layout.annotation.x,layout.annotation.y],cursor:[cursorX,bandY+bandH/2],sampling:[cursorX,bandY+bandH/2],result:[resultX,resultY+12]};
   const spoken=phase<3?TOKENS.map((token,i)=>`${token} ${phase===0?'原始分数':phase===1?'缩放分数':'指数权重'} ${value(values[i])}`).join('，'):TOKENS.map((token,i)=>`${token} 概率 ${percent(P[i])}`).join('，');
   text(desc,`阶段 ${phase+1}。温度 ${T.toFixed(2)}。${spoken}。${chosen===null?'尚未完成采样。':`本次选中 ${TOKENS[chosen]}。`}`);
  }

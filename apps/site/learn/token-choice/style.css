@@ -11,3 +11,10 @@ dialog{border:1px solid #e5dce9;background:#fffdf8;border-radius:18px;max-width:
 .challenge-answers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.challenge-answers button{background:#f1ebf5;color:#725389;border:1px solid #dfd3e8;border-radius:8px;padding:13px 8px;font:20px Georgia,serif}.challenge-answers button[aria-pressed=true]{background:#8b749e;color:white;border-color:#8b749e}#challenge-feedback:empty{display:none}#challenge-feedback{padding:15px;background:#f2f1ed;border-radius:8px;color:#665873;line-height:1.9}.stage-actions #challenge{color:#80609e}
 
 .is-playing #challenge{display:none}
+
+/* Reserve real drawing space: a narrow screen must not shrink key type to 9px.
+   Initial settings may scroll; the playing stage retains pause and progress. */
+.exhibit{min-height:610px}
+@media(max-width:700px){.exhibit{min-height:610px}.callout p{font-size:13px}.callout>span,.calculation{font-size:11px}.artwork{width:100%}}
+
+.reduce-motion .secondary,.reduce-motion .artwork{transition:none!important}

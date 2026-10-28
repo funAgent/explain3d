@@ -1,0 +1,5 @@
+<!doctype html><meta charset="utf-8"><title>Token visual QA</title><style>body{margin:0;background:#e4e1dc;font:14px system-ui}nav{position:sticky;top:0;padding:8px;background:white;z-index:2}iframe{width:390px;height:844px;border:0;display:block;margin:8px auto}button{margin:3px}body.detail iframe{width:1200px;height:1000px;zoom:4;margin:0}body.desktop iframe{width:1280px;height:936px}</style><nav><button onclick="document.body.className=''">390px</button><button onclick="document.body.className='desktop'">桌面</button><button onclick="document.body.className='detail'">4× 原生细节</button><button id="hide">模拟隐藏事件</button><button id="show">恢复可见事件</button></nav><iframe src="/learn/token-choice/"></iframe><script>
+const frame=document.querySelector('iframe');
+document.querySelector('#hide').onclick=()=>{Object.defineProperty(frame.contentDocument,'hidden',{configurable:true,get:()=>true});frame.contentDocument.dispatchEvent(new Event('visibilitychange'));};
+document.querySelector('#show').onclick=()=>{Object.defineProperty(frame.contentDocument,'hidden',{configurable:true,get:()=>false});frame.contentDocument.dispatchEvent(new Event('visibilitychange'));};
+</script>

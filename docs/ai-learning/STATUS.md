@@ -2,9 +2,9 @@
 
 Updated: 2026-10-28 (Asia/Shanghai).
 
-Current total: **4 / 10 published**. **Visual acceptance reopened for all four on 2026-10-28 after user feedback.** Active work: **Token choice quality rework**, starting with misbound probability labels at 32 seconds. New topics, including Transformer, are on hold until the four-scene rework queue passes the updated review gates.
+Current total: **4 / 10 published**. **Visual acceptance reopened for all four on 2026-10-28 after user feedback.** Token-choice follow-up has passed developer visual/teaching review and awaits the checked release; the other three remain open. Next rework: **Attention**. New topics, including Transformer, are on hold until the four-scene rework queue passes the updated review gates.
 
-See [Anatomy comparison and concrete findings](reviews/2026-10-28-anatomy-quality.md). Rework order: token-choice → attention → tokenization → embedding. Keep existing routes and mathematical/release evidence. Publication status does not mean the renewed visual gate has passed. This review changes no website implementation or distributed Skill.
+See [Anatomy comparison and concrete findings](reviews/2026-10-28-anatomy-quality.md). Rework order: token-choice → attention → tokenization → embedding. Keep existing routes and mathematical/release evidence. Publication status does not mean the renewed visual gate has passed. The initial comparison changed no website implementation or distributed Skill. A subsequent token-choice repair exists only on the draft branch described below.
 
 Historical “Next” statements below describe the release sequence at that time and are superseded by this active work item and roadmap.
 
@@ -44,3 +44,12 @@ Route `/learn/embedding/`. One question: how an integer ID retrieves one row fro
 ## Published lesson 03: Attention — 2026-10-28
 
 Single causal attention row at C: authored Q/K/V, scaled dot products, future mask, exponential normalization, weighted V and sum. Query direction changes output (4.248 / 10 / 15.752); masked future V leaves output invariant. Tests and actual desktop/narrow-browser teaching review passed as detailed in LESSON.md. Published at https://explain.funagent.app/learn/attention/ . PR #4 passed CI 40562980763 and READY preview dpl_8fpzGGqXyoq2sbd7jDRdFDc2k5hV; fetched preview HTML/app/stage matched reviewed source exactly. Merge 49086e255b9527202f467103d7d0353b81627632 reached production READY as dpl_H4cKbv114YSRUKfzEGFXcdUXfE9P. Production browser verified future V=1000 leaves output 15.752, query zero produces 10, and prediction feedback/return preserves that state. No new Skill or host-compatibility claim; uses the shared playback, annotation and evidence method. Next after acceptance: Transformer layer.
+
+## Token-choice repair candidate — 2026-10-28
+
+Draft branch `fix/token-choice-morph-craft-20261028` repairs moving-label ownership, makes the focus continuous, and drafts narrow-layout/carrier refinements. `npm run check` and3,620 geometric poses pass. Browser bootstrap returned Unknown tool; actual1×/4×/intermediate/390px visual and lifecycle acceptance remain pending. **No production update; visual acceptance remains needs-rework and token-choice stays active.** See [candidate evidence and exact pending checks](reviews/2026-10-28-token-choice-rework.md). Skill changes and new topics remain on hold.
+
+
+## Reviewed token-choice follow-up — 2026-10-28
+
+Browser returned; actual intermediate/reverse desktop frames,390px, native4× contact detail, natural completion/replay, keyboard, manual reduced-motion and controlled hidden-event paths reviewed. Fixed newly observed carrier/front intersection and narrow tick clipping as well as the original label defect. Exact operation rail and staged scales improve causal inspection. Full check passed. Review decision closes listed token-choice defects, without asserting measured learning gains or awards; the other three scenes and Skill distribution alignment remain open. See [full follow-up record](reviews/2026-10-28-token-choice-rework.md). Deployment receipt follows only after matching production SHA/READY and route verification.
