@@ -1,3 +1,4 @@
+import {operation as sampleOperation} from './model.mjs';
 import {chartBandGeometry} from './geometry.mjs';
 /**
  * A mathematical scene for Explain3D. Original vector geometry, inspired by
@@ -19,18 +20,18 @@ const css=`
  svg{display:block;width:100%;height:100%;overflow:visible;contain:layout style}
  path,line,rect,circle{vector-effect:non-scaling-stroke}
  text{user-select:none;paint-order:stroke;stroke:none;text-rendering:geometricPrecision}
- .axis{font:11px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8290a1}
+ .axis{font:18px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8290a1}
  .token{font:25px Georgia,"Times New Roman",serif;fill:#3a4657;letter-spacing:.1px}
- .translation{font-size:11px;fill:#7e8795}
+ .translation{font-size:14px;fill:#7e8795}
  .number{font:18px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#485872;font-variant-numeric:tabular-nums}
  .note{font-size:12px;fill:#778292;letter-spacing:.15px}
  .formula{font:17px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#5a6680;font-variant-numeric:tabular-nums}
- .small{font:11px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8992a0}
+ .small{font:18px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#8992a0}
  .fine{fill:none;stroke:#c3ccd5;stroke-width:.6;stroke-linecap:round;stroke-linejoin:round}
  .guide{fill:none;stroke:#b2bfce;stroke-width:.6;stroke-dasharray:2 4}
  .grid{stroke:#dfe5ea;stroke-width:.5}
  .bright{stroke:#fff;stroke-width:1;fill:none}
- .mobile .axis{font-size:16px}.mobile .number{font-size:18px}.mobile .note{font-size:16px}.mobile .small{font-size:16px}.mobile .translation{font-size:16px}.mobile .token{font-size:22px}.mobile .formula{font-size:16px}
+ .mobile .axis{font-size:18px}.mobile .number{font-size:18px}.mobile .note{font-size:16px}.mobile .small{font-size:18px}.mobile .translation{font-size:16px}.mobile .token{font-size:22px}.mobile .formula{font-size:18px}
 `;
 
 function node(tag,attrs={},parent){const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));parent?.append(n);return n;}
@@ -48,7 +49,11 @@ export function createStage(host){
  const floorGradient=node('linearGradient',{id:'tc-floor',x1:0,y1:0,x2:0,y2:1},defs);node('stop',{offset:0,'stop-color':'#fdfefe'},floorGradient);node('stop',{offset:1,'stop-color':'#edf1f4'},floorGradient);
  const goldGradient=node('linearGradient',{id:'tc-gold',x1:0,y1:0,x2:0,y2:1},defs);node('stop',{offset:0,'stop-color':'#f4d799'},goldGradient);node('stop',{offset:1,'stop-color':'#d7ac57'},goldGradient);
  const glow=node('filter',{id:'tc-shadow',x:'-40%',y:'-100%',width:'180%',height:'300%'},defs);node('feGaussianBlur',{stdDeviation:4},glow);
- const gradients=COLORS.map((c,i)=>{const g=node('linearGradient',{id:`tc-bar-${i}`,x1:0,y1:0,x2:1,y2:0},defs);const a=node('stop',{offset:0,'stop-color':c,'stop-opacity':.48},g),b=node('stop',{offset:.83,'stop-color':c,'stop-opacity':.28},g);node('stop',{offset:1,'stop-color':'#fff','stop-opacity':.7},g);return[a,b];});
+ const gradients=COLORS.map((c,i)=>{const g=node('linearGradient',{id:`tc-bar-${i}`,x1:0,y1:0,x2:1,y2:0},defs);const a=node('stop',{offset:0,'stop-color':c,'stop-opacity':.65},g),b=node('stop',{offset:.83,'stop-color':c,'stop-opacity':.42},g);node('stop',{offset:1,'stop-color':'#fff','stop-opacity':.4},g);return[a,b];});
+ const operationRail=node('g',{'data-operation':'exact-values'},svg),railBody=node('path',{fill:'url(#tc-floor)',stroke:'#bcc8d4','stroke-width':.7},operationRail),railLower=node('path',{fill:'none',stroke:'#d4dce3','stroke-width':1},operationRail),railDivider=node('path',{class:'fine'},operationRail);
+ const railToken=node('text',{class:'token','text-anchor':'middle'},operationRail),railInput=node('text',{class:'number','text-anchor':'middle'},operationRail),railOperator=node('text',{class:'number','text-anchor':'middle'},operationRail),railOutput=node('text',{class:'number','text-anchor':'middle'},operationRail),railArrow1=node('text',{class:'number','text-anchor':'middle'},operationRail),railArrow2=node('text',{class:'number','text-anchor':'middle'},operationRail);
+ text(railArrow1,'→');text(railArrow2,'→');
+ const railFlow=node('path',{fill:'none','stroke-width':.9,'stroke-dasharray':'2 4'},operationRail),railDot=node('circle',{r:3,stroke:'#fff','stroke-width':1},operationRail);
  const axisGroup=node('g',{},svg),axisTicks=[];
  const plotBacking=node('path',{fill:'#f5f7f9',opacity:.6},axisGroup);
  const gridGroup=node('g',{},axisGroup);
@@ -93,8 +98,9 @@ export function createStage(host){
   const cdf=frame.cdf?.length===5?frame.cdf:[0,...P.map((_,i)=>P.slice(0,i+1).reduce((a,b)=>a+b,0))];
   const chosen=frame.selected,dx=mobile?5:11,dy=mobile?4:8;
   const {base,plotH,barW,xs,bandX,bandW,bandY,bandH,morph}=layout;
-  const axisX=mobile?57:87,plotEnd=xs[3]+barW+dx;
-  const chartOpacity=1-morph;
+  const axisX=mobile?68:87,plotEnd=xs[3]+barW+dx;
+  const chartOpacity=1-ease(morph/.22);
+  const operation=sampleOperation(frame),showOperation=phase===1||phase===2||phase===3&&pr<.27;
   let values=frame.logits,max=4,axisTitle='原始分数 z';
   if(phase===1){values=frame.scaled;max=8;axisTitle='缩放分数 z / T';}
   if(phase===2){values=frame.weights;max=Math.max(...values);axisTitle='指数权重 exp(z / T)';}
@@ -102,7 +108,7 @@ export function createStage(host){
   attr(axisGroup,{opacity:chartOpacity});attr(baseGroup,{opacity:chartOpacity});
   attr(plotBacking,{d:poly([[axisX,base],[axisX,base-plotH],[plotEnd,base-plotH],[plotEnd,base]])});
   attr(axisSpine,{d:`M${axisX} ${base-plotH-8}V${base}H${plotEnd+12}`});
-  attr(axisName,{x:axisX,y:base-plotH-25});text(axisName,axisTitle);
+  attr(axisName,{x:plotEnd,y:base-plotH-13,'text-anchor':'end'});text(axisName,axisTitle);
   axisTicks.forEach((a,i)=>{const y=base-plotH*i/4;attr(a.line,{x1:axisX,y1:y,x2:plotEnd,y2:y});attr(a.tick,{x1:axisX-4,y1:y,x2:axisX,y2:y});attr(a.label,{x:axisX-12,y:y+4});text(a.label,phase>=3?`${i*25}%`:value(max*i/4));});
   const bx=xs[0]-25,bw=plotEnd-bx+24,by=base+8;
   attr(baseShadow,{d:poly([[bx-6,by+12],[bx+bw+12,by+12],[bx+bw+19,by+26],[bx,by+26]])});
@@ -117,7 +123,8 @@ export function createStage(host){
    const x=phase>=3?owned.x:xs[i],y=phase>=3?owned.y:base-h,w=phase>=3?owned.w:barW,hh=phase>=3?owned.h:h;
    const depthX=Math.min(w/3,mix(dx,mobile?4:8,morph)),depthY=mix(dy,mobile?3:6,morph);
    const active=phase>=4&&chosen!==null,muted=active&&i!==chosen;
-   attr(b.g,{opacity:muted?.49:1});
+   attr(b.g,{opacity:muted?.72:1});
+   attr(b.front,{'stroke-width':showOperation&&operation.candidate===i?1.3:.65});
    attr(b.front,{d:bevel(x,y,w,Math.max(.5,hh),Math.min(2,w/5))});
    attr(b.side,{d:poly([[x+w,y],[x+w+depthX,y-depthY],[x+w+depthX,y+hh-depthY],[x+w,y+hh]])});
    attr(b.top,{d:poly([[x,y],[x+depthX,y-depthY],[x+w+depthX,y-depthY],[x+w,y]]),opacity:hh>.5?1:0});
@@ -137,13 +144,41 @@ export function createStage(host){
    attr(b.translation,{opacity:phase>=3?0:1});text(b.translation,CHINESE[i]);
   });
   attr(bandDock,{opacity:morph});
-  attr(dockEdge,{d:bevel(bandX-6,bandY+bandH+1,bandW+12,12,2)});
-  attr(dockLip,{d:`M${bandX-4} ${bandY+bandH+2}H${bandX+bandW+4}`});
-  attr(bandScale,{opacity:morph});
+  const {x:dockX,y:dockY,end:dockEnd}=layout.dock;
+  attr(dockEdge,{d:bevel(dockX,dockY,dockEnd-dockX,12,2)});
+  attr(dockLip,{d:`M${dockX+2} ${dockY+1}H${dockEnd-2}`});
+  attr(bandScale,{opacity:phase===5?0:ease((morph-.8)/.2)});
   bandTicks.forEach((a,i)=>{const x=bandX+bandW*i/20;attr(a.tick,{x1:x,y1:bandY-18,x2:x,y2:bandY-(i%5===0?29:23)});if(a.label){attr(a.label,{x,y:bandY-38});text(a.label,phase>=4?(i/20).toFixed(i===0||i===20?0:2):`${i*5}%`);}});
   bounds.forEach((p,i)=>{const x=bandX+cdf[i+1]*bandW;attr(p,{d:`M${f(x)} ${bandY+bandH+4}V${bandY+bandH+12}`});});
   attr(bandLeaders,{opacity:phase>=3?1:0});
   labelLeaders.forEach((leader,i)=>{const {x:sx,y:sy,endX:ex,endY:ey}=layout.candidates[i].leader;attr(leader,{d:`M${f(sx)} ${f(sy)}C${f(sx)} ${f(sy+9)},${f(ex)} ${f(ey-9)},${f(ex)} ${f(ey)}`,stroke:frame.color===false?'#a7b3c0':COLORS[i],opacity:.85});});
+  attr(operationRail,{opacity:phase===3?1-ease((pr-.22)/.05):showOperation?1:0,'aria-hidden':String(!showOperation)});
+  if(operation){
+   const i=operation.candidate,c=COLORS[i],rw=mobile?374:650,rx=(width-rw)/2,ry=9;
+   attr(railBody,{d:bevel(rx,ry,rw,49,5)});attr(railLower,{d:`M${rx+5} 61H${rx+rw-5}`});
+   const points=mobile?[rx+29,rx+88,rx+141,rx+210,rx+277,rx+329]:[rx+52,rx+155,rx+237,rx+325,rx+420,rx+538];
+   const [tx,ix,a1x,ox,a2x,outx]=points;
+   attr(railToken,{x:tx,y:39,fill:c,'font-size':mobile?19:25});text(railToken,TOKENS[i]);
+   attr(railDivider,{d:`M${rx+(mobile?56:100)} 18V49`});
+   attr(railInput,{x:ix,y:39});text(railInput,value(operation.input));
+   attr(railOperator,{x:ox,y:39,fill:c});text(railOperator,operation.operator);
+   attr(railOutput,{x:outx,y:39,fill:c});text(railOutput,phase===3?percent(operation.output):value(operation.output));
+   attr(railArrow1,{x:a1x,y:39});attr(railArrow2,{x:a2x,y:39});
+   const targetX=xs[i]+barW/2,targetY=base-values[i]/max*plotH-30;
+   attr(railFlow,{d:`M${ix} 47H${outx}V73H${targetX}V${targetY}`,stroke:c});
+   const travel=frame.reducedMotion?1:operation.progress;
+   let dotX,dotY;
+   if(travel<.65){dotX=mix(ix,outx,ease(travel/.65));dotY=47;}
+   else {
+    const path=[[outx,47],[outx,73],[targetX,73],[targetX,targetY]];
+    const lengths=path.slice(1).map((p,j)=>Math.hypot(p[0]-path[j][0],p[1]-path[j][1]));
+    let distance=ease((travel-.65)/.35)*lengths.reduce((a,b)=>a+b,0),j=0;
+    while(j<lengths.length-1&&distance>lengths[j])distance-=lengths[j++];
+    const t=lengths[j]?distance/lengths[j]:1;
+    dotX=mix(path[j][0],path[j+1][0],t);dotY=mix(path[j][1],path[j+1][1],t);
+   }
+   attr(railDot,{cx:dotX,cy:dotY,fill:c});
+  }
   const formulaY=mobile?378:365,fw=mobile?378:570;
   attr(formulaBack,{d:bevel((width-fw)/2,formulaY,fw,44,7)});attr(formulaBottom,{d:`M${(width-fw)/2+7} ${formulaY+47}H${(width+fw)/2-7}`});attr(formulaLabel,{x:width/2,y:formulaY+(phase===2?18:28)});
   const sum=frame.weights.reduce((a,b)=>a+b,0),selected=chosen??0;
@@ -159,8 +194,8 @@ export function createStage(host){
   attr(resultLink,{d:`M${f(resultX)} ${f(resultY+resultH)}C${f(resultX)} ${f(resultY+resultH+12)},${f(segmentX)} ${bandY-16},${f(segmentX)} ${bandY+8}`});
   attr(resultShadow,{x:resultX-resultW/2+2,y:resultY+6,width:resultW,height:resultH});
   attr(resultSide,{d:poly([[resultX-resultW/2,resultY+resultH-5],[resultX+resultW/2,resultY+resultH-5],[resultX+resultW/2+7,resultY+resultH-12],[resultX+resultW/2+7,resultY+resultH-4],[resultX+resultW/2,resultY+resultH+3],[resultX-resultW/2,resultY+resultH+3]])});
-  attr(resultPlate,{x:resultX-resultW/2,y:resultY,width:resultW,height:resultH});attr(resultAccent,{x:resultX-resultW/2+15,y:resultY+12,width:resultW-30,fill:COLORS[selected]});attr(resultToken,{x:resultX,y:resultY+43});text(resultToken,TOKENS[selected]);attr(resultProbability,{x:resultX,y:resultY+62});text(resultProbability,`${CHINESE[selected]}  ·  ${percent(P[selected])}`);attr(resultTitle,{x:resultX,y:resultY-13});text(resultTitle,'SELECTED TOKEN');
-  anchors={scores:[xs[0]+barW*.5,base-frame.logits[0]/4*plotH*.72],temperature:[xs[0]+barW+17,base-frame.scaled[0]/8*plotH*.72],weights:[xs[0]+barW/2,base-plotH*.7],probability:[layout.candidates[0].focus.x,layout.candidates[0].focus.y],cursor:[cursorX,bandY+bandH/2],sampling:[cursorX,bandY+bandH/2],result:[resultX,resultY+12]};
+  attr(resultPlate,{x:resultX-resultW/2,y:resultY,width:resultW,height:resultH});attr(resultAccent,{x:resultX-resultW/2+15,y:resultY+12,width:resultW-30,fill:COLORS[selected]});attr(resultToken,{x:resultX,y:resultY+43});text(resultToken,TOKENS[selected]);attr(resultProbability,{x:resultX,y:resultY+62});text(resultProbability,`${CHINESE[selected]}  ·  ${percent(P[selected])}`);attr(resultTitle,{x:resultX,y:resultY-13});text(resultTitle,'选中结果');
+  anchors={scores:[xs[0]+barW*.5,base-frame.logits[0]/4*plotH*.72],temperature:[width/2,33],weights:[width/2,33],probability:[layout.annotation.x,layout.annotation.y],cursor:[cursorX,bandY+bandH/2],sampling:[cursorX,bandY+bandH/2],result:[resultX,resultY+12]};
   const spoken=phase<3?TOKENS.map((token,i)=>`${token} ${phase===0?'原始分数':phase===1?'缩放分数':'指数权重'} ${value(values[i])}`).join('，'):TOKENS.map((token,i)=>`${token} 概率 ${percent(P[i])}`).join('，');
   text(desc,`阶段 ${phase+1}。温度 ${T.toFixed(2)}。${spoken}。${chosen===null?'尚未完成采样。':`本次选中 ${TOKENS[chosen]}。`}`);
  }

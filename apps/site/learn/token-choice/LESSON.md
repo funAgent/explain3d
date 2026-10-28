@@ -71,3 +71,8 @@ node apps/site/learn/token-choice/model.test.mjs
 ## Reopened visual review: draft repair — 2026-10-28
 
 The 32s probability-label defect has a source-level repair using shared geometry and ordered identity lanes. Numerical ownership/non-overlap/CDF/continuous-focus/reverse-seek checks cover3,620 poses. Full site checks pass. See `docs/ai-learning/reviews/2026-10-28-token-choice-rework.md` for precise changes and remaining gates. Browser connection was unavailable; no actual screenshots,390px legibility,lifecycle or4× craft acceptance were performed for this candidate. It is not published or visually accepted. Earlier published evidence remains historical and does not validate this new code.
+
+
+## Follow-up visual and teaching review — 2026-10-28
+
+Browser access was restored. Implemented exact operation rail, staged scale visibility, larger narrow type, continuous annotations and carrier contact repair. Actual desktop/390px and native4× review, forward/reverse intermediate frames, natural completion/replay/Escape, controlled hidden event and manual reduced-motion setting were exercised. Prediction check retained fixedu and returnedT=2/floor27.6%. See `docs/ai-learning/reviews/2026-10-28-token-choice-rework.md` for observed results/screenshots and untested limits. The initial draft's no-browser statement is historical. This is developer review, not measured learning gains or external aesthetic endorsement.

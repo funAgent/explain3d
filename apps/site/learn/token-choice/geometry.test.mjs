@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {sample} from './model.mjs';
+import {sample,operation} from './model.mjs';
 import {chartBandGeometry} from './geometry.mjs';
 const close=(a,b,t=1e-8)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
 let checked=0;
@@ -10,6 +10,7 @@ for(const mobile of [false,true])for(const temperature of [.4,.8,1,1.6,2])for(co
   const g=chartBandGeometry(frame,mobile);states.push(g);
   g.candidates.forEach((c,i)=>{
    assert.ok(c.w>0&&c.h>0);
+   close(g.dock.y,c.y+c.h+1);assert.ok(g.dock.x<c.x&&g.dock.end>c.x+c.w,'carrier spans all four fronts without intersecting them');
    assert.ok(c.x>=0&&c.x+c.w<=g.width);
    if(i<3)assert.ok(c.x+c.w<=g.candidates[i+1].x+1e-8,'front faces must not overlap');
    // Every number stays in a readable identity lane BELOW all candidate faces.
@@ -37,3 +38,22 @@ const mid=chartBandGeometry(sample(32),false),floor=mid.candidates[1];
 assert.ok(floor.valueY>mid.candidates[0].y+mid.candidates[0].h);
 assert.ok(floor.valueX>mid.candidates[0].valueX);
 console.log(`Token choice geometry: ${checked} intermediate poses; ownership, non-overlap, CDF scale, continuous focus, reverse seek passed. Browser visual acceptance remains separate.`);
+
+for(const temperature of [.4,.8,2])for(const phase of [1,2,3])for(const progress of [0,.05,.2499,.25,.50,.7499,.99,1]){
+ const starts=[0,8,18,27,36,45],t=starts[phase]+progress*(starts[phase+1]-starts[phase]);
+ const frame={...sample(t,{temperature}),phase,progress};
+ const op=operation(frame),i=op.candidate;
+ assert.ok(i>=0&&i<4&&op.progress>=0&&op.progress<=1);
+ if(phase===1)close(op.output,op.input/temperature);
+ if(phase===2)close(op.output,Math.exp(op.input));
+ if(phase===3)close(op.output,op.input/frame.totalWeight);
+}
+for(const mobile of [false,true]){
+ let previous=null;
+ for(let i=0;i<=900;i++){
+  const g=chartBandGeometry(sample(27+i/100),mobile);
+  if(previous)assert.ok(Math.hypot(g.annotation.x-previous.x,g.annotation.y-previous.y)<5,'rail-to-face annotation jump');
+  previous=g.annotation;
+ }
+}
+console.log('Exact operation operands/results and rail-to-face annotation continuity passed.');

@@ -2,7 +2,7 @@
 
 Updated: 2026-10-28 (Asia/Shanghai).
 
-Current total: **4 / 10 published**. **Visual acceptance reopened for all four on 2026-10-28 after user feedback.** Active work: **Token choice quality rework**, starting with misbound probability labels at 32 seconds. New topics, including Transformer, are on hold until the four-scene rework queue passes the updated review gates.
+Current total: **4 / 10 published**. **Visual acceptance reopened for all four on 2026-10-28 after user feedback.** Token-choice follow-up has passed developer visual/teaching review and awaits the checked release; the other three remain open. Next rework: **Attention**. New topics, including Transformer, are on hold until the four-scene rework queue passes the updated review gates.
 
 See [Anatomy comparison and concrete findings](reviews/2026-10-28-anatomy-quality.md). Rework order: token-choice → attention → tokenization → embedding. Keep existing routes and mathematical/release evidence. Publication status does not mean the renewed visual gate has passed. The initial comparison changed no website implementation or distributed Skill. A subsequent token-choice repair exists only on the draft branch described below.
 
@@ -48,3 +48,8 @@ Single causal attention row at C: authored Q/K/V, scaled dot products, future ma
 ## Token-choice repair candidate — 2026-10-28
 
 Draft branch `fix/token-choice-morph-craft-20261028` repairs moving-label ownership, makes the focus continuous, and drafts narrow-layout/carrier refinements. `npm run check` and3,620 geometric poses pass. Browser bootstrap returned Unknown tool; actual1×/4×/intermediate/390px visual and lifecycle acceptance remain pending. **No production update; visual acceptance remains needs-rework and token-choice stays active.** See [candidate evidence and exact pending checks](reviews/2026-10-28-token-choice-rework.md). Skill changes and new topics remain on hold.
+
+
+## Reviewed token-choice follow-up — 2026-10-28
+
+Browser returned; actual intermediate/reverse desktop frames,390px, native4× contact detail, natural completion/replay, keyboard, manual reduced-motion and controlled hidden-event paths reviewed. Fixed newly observed carrier/front intersection and narrow tick clipping as well as the original label defect. Exact operation rail and staged scales improve causal inspection. Full check passed. Review decision closes listed token-choice defects, without asserting measured learning gains or awards; the other three scenes and Skill distribution alignment remain open. See [full follow-up record](reviews/2026-10-28-token-choice-rework.md). Deployment receipt follows only after matching production SHA/READY and route verification.

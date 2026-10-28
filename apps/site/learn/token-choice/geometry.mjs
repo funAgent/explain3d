@@ -4,7 +4,7 @@ const ease = x => { x = clamp(x); return x*x*(3-2*x); };
 const mix = (a,b,t) => a+(b-a)*t;
 export function chartBandGeometry(frame, mobile=false) {
  const width=mobile?390:1000, height=mobile?430:420;
- const base=mobile?280:285, plotH=mobile?204:225, barW=mobile?32:110;
+ const base=mobile?280:285, plotH=mobile?170:185, barW=mobile?32:110;
  const xs=mobile?[75,153,231,309]:[130,345,560,775];
  const bandX=mobile?25:110, bandW=mobile?340:780, bandY=170, bandH=mobile?60:72;
  let morph=frame.phase>3?1:frame.phase===3?ease((frame.progress-.27)/.46):0;
@@ -20,5 +20,8 @@ export function chartBandGeometry(frame, mobile=false) {
    leader:{x:x+w/2,y:y+height+3,endX:labelX,endY:labelY-21},
    focus:{x:x+w/2,y:y+height*.3}};
  });
- return {width,height,base,plotH,barW,xs,bandX,bandW,bandY,bandH,morph,candidates};
+ const focusT=frame.phase>3?1:frame.reducedMotion?(frame.progress>=.27?1:0):ease((frame.progress-.20)/.15);
+ const annotation={x:mix(width/2,candidates[0].focus.x,focusT),y:mix(33,candidates[0].focus.y,focusT)};
+ const dock={x:candidates[0].x-6,y:candidates[0].y+candidates[0].h+1,end:candidates[3].x+candidates[3].w+6};
+ return {width,height,base,plotH,barW,xs,bandX,bandW,bandY,bandH,morph,candidates,annotation,dock};
 }

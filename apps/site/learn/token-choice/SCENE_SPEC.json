@@ -119,7 +119,8 @@
     "numericState": "所有数值从同一组输入计算，几何变形插值不改变它们的数学定义",
     "playback": "实际 elapsed time，支持暂停、继续、反向拖动、重播与结束恢复；隐藏标签页暂停",
     "narration": "每次仅一条气泡跟随当前数学对象；颜色在所有阶段保持候选身份一致",
-    "probabilityMorph": "chartBandGeometry drives front faces, identity-lane values, connectors and continuous focus. During representation change, widths/heights are transitional; final band width encodes probability."
+    "probabilityMorph": "chartBandGeometry drives front faces, identity-lane values, connectors and continuous focus. During representation change, widths/heights are transitional; final band width encodes probability.",
+    "operationRail": "Exact operand/operator/result pointers, one candidate at a time; travel is pedagogical, not compute latency. Chapter units switch discretely."
   },
   "invariants": [
     "四个概率均为正且总和约为 1",
@@ -131,7 +132,9 @@
     "对返回数组的修改不会污染后续 sample 或原始教学数据",
     "Probability labels stay below all moving front faces and retain one ordered candidate identity lane",
     "Probability connectors originate at their owning current front face; focus remains within that face",
-    "Final front-face band widths and cumulative positions equal p and cdf without extrusion"
+    "Final front-face band widths and cumulative positions equal p and cdf without extrusion",
+    "Carrier follows the shared bottom plane and never crosses the current fronts",
+    "Operation rail operands and outputs obey the selected candidate equation exactly"
   ],
   "simplifications": [
     "四个词构成完整的教学词表；不是从真实模型词表截取的前四项，也不是线上模型输出",
