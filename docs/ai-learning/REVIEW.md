@@ -36,3 +36,16 @@ The eventual general skill chooses a representation from the question and constr
 ## Learning evidence boundary
 
 Developer review, mathematical tests and a self-check question establish an inspectable teaching design. They do not establish measured learning gains. Until actual learner sessions are conducted, describe educational suitability as a review judgment and record potential misconceptions. Never claim an award, universal fidelity or a completed user study.
+
+
+## Reopened craft gate — 2026-10-28
+
+The user rejected the current finish after comparing it with Anatomy. See [the evidence and rework order](reviews/2026-10-28-anatomy-quality.md). All four published scenes need rework; preserve publication receipts while marking visual acceptance separately. Do not add Transformer or subsequent topics until this rework queue is closed. One iteration still focuses on one scene.
+
+- Compare the actual exhibit at 1× and meaningful 4× closeups with Anatomy references. Show purpose, supporting structure, operation and finishing detail; neither primitive count nor decorative screws establishes craft. Keep mathematical lengths and coordinates undistorted.
+- Capture each important transition at start, several intermediate frames and end, also backward. Every number/label must stay with its owning object through a morph. The token-choice 32s label defect is a concrete failure to repair. Do not validate only stable endpoints.
+- Let meaningful causal movement carry the explanation. Phase-based text replacement alone does not pass. Preserve object identity from input through operation to output; keep a readable result pose.
+- Keep one local callout, semantic identity colors and restrained depth per user preference. Anatomy’s monochrome/no-balloon rules do not override those choices. Shorten and position annotation so it supports, rather than dominates, the active object.
+- At 390px width, keep active labels and key values directly readable (target at least 14 CSS px after SVG scaling); use staged/recomposed views when space is limited. Passing overflow checks is insufficient. Record the actual environment, not a physical-phone claim.
+- Read the public and working Skill versions before syncing. Only propagate methods proved in a revised scene, use skill-creator and git persistence, and leave unrelated pre-existing edits intact. No new host-compatibility claim follows from documentation changes.
+- Separate technical pass, visual review and measured learning evidence. Reopen acceptance on a new concrete issue; do not erase earlier mathematical or deployment records.
