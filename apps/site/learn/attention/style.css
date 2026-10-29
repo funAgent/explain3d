@@ -22,4 +22,4 @@ dialog{border:1px solid #e5dce9;background:#fffdf8;border-radius:18px;max-width:
 #future{width:100px}.controls label{display:flex;align-items:center;gap:8px}.controls output{min-width:25px}.controls .presets button{padding:8px 10px}@media(max-width:700px){.controls{height:100px;max-height:100px}.controls label{font-size:10px;flex:1}#future{width:75px}.presets{justify-content:space-around}.controls .hint{display:none}.exhibit{min-height:435px}}
 /* Keep quantitative type readable; narrow views recompose as persistent rows. */
 .exhibit{min-height:700px}.artwork svg text{stroke:none}
-@media(max-width:700px){.exhibit{min-height:700px}.callout p{font-size:13px}}
+@media(max-width:700px){.exhibit{min-height:700px}.callout p{font-size:14px}}

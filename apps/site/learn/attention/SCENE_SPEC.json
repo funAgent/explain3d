@@ -52,7 +52,8 @@
     "color": "position identity",
     "probabilityBar": "0..1 within each channel",
     "contributionBar": "length of p_j*V_j; shared total scale 0..20",
-    "connections": "dependencies, not physical motion or measured timing"
+    "connections": "dependencies, not physical motion or measured timing",
+    "valueRead": "Dashed V and filled pV share a0..20 front-plane scale; masked D original V is not drawn beyond that range"
   },
   "experiment": "Keep K/V fixed and change q; then vary masked future V and show output invariance.",
   "transfer": "q=0, futureV=1000 gives mean of visible 0,10,20 = 10, not max or four-way mean.",
@@ -66,13 +67,15 @@
     "No learned projection, positions, dropout, output projection, residual, training or token sampling",
     "SVG teaching geometry, not actual model hardware"
   ],
-  "reworkDraft": {
-    "date": "2026-10-29",
-    "layout": "Persistent rows; paired Q/K component products and merge/divide paths; raw normalization; orthogonal nonzero contribution paths",
-    "notAccepted": [
-      "Cross-chapter value handoffs need continuity",
-      "Complete1x/4x, narrow playing layout and lifecycle evidence pending",
-      "Final rounded-arithmetic wording needs browser recheck"
+  "reworkReview": {
+    "date": "2026-10-30",
+    "status": "reviewed-candidate-pending-release",
+    "record": "docs/ai-learning/reviews/2026-10-29-attention-rework.md",
+    "layout": "Persistent rows, exact chapter carriers, paired QK wells/merge, common denominator collection, traced shared-scale fractions, V/pV comparison and nonzero routed contributions",
+    "limits": [
+      "No physical phone/other engine/learner study",
+      "Controlled hidden event tested; native background scheduling not independently verified",
+      "Skill distribution alignment pending"
     ]
   }
 }

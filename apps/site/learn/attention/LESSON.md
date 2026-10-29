@@ -23,3 +23,8 @@ See `docs/ai-learning/reviews/2026-10-29-attention-rework.md`. Exact operation/r
 
 
 Q/K component follow-up adds paired multiplication wells, explicit merge and routed contribution paths. Desktop7.2/8.2/8.6/9.0/reverse8.2 and selected390px inspection completed; narrow type measured15.21px after repair. Rounded arithmetic uses≈. Full release review remains pending; see the same rework record.
+
+
+## Reopened craft review follow-up — 2026-10-30
+
+Persistent mathematical rows now carry exact values between chapters; Q/K component multiplication, denominator collection, normalized fractions, same-scaleV/pV and cumulative contributions are inspectable in intermediate frames.18-unit narrow SVG type, explicit front-face ports and consistent carrier depth were checked with native4× and390px browser evidence. Full tests and affected UI lifecycle/quiz checks passed; see [review with actual images, raw DOM records and limits](../../../../docs/ai-learning/reviews/2026-10-29-attention-rework.md#follow-up-2026-10-30--reviewed-candidate-release-verification-pending). Controlled hidden-event handling is covered; real background scheduling, physical devices and measured learning gains are not. This entry is candidate acceptance, not yet a production receipt. Skill/host compatibility is not newly claimed.

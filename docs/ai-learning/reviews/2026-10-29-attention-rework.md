@@ -34,3 +34,44 @@ Inspection also found misleading display arithmetic: rounded0.245×10 was printe
 npm run check passes, retaining17,298 pose cases, original goldens and mechanical tests. Added independent path sampling checks for endpoints, exact junctions and segment containment. Official PyTorch reference rechecked at its algorithm lines459–480: scaling, mask bias, softmax then weightedV; the scene omits dropout and projections explicitly.
 
 Still NOT accepted or released: cross-chapter value handoffs are not yet continuous; full1×/4× craft, mask semantics, all phases/long values/mobile playing layout and lifecycle matrix remain to review. Stage height700px causes initial scrolling and must be judged against single-screen playing requirements. Avoid ending with another formula-heavy table merely because the equations pass. Continue this PR; preserve existing production and needs-rework status. No Skill sync or host-compatibility claim.
+
+
+## Follow-up 2026-10-30 — reviewed candidate, release verification pending
+
+This section supersedes the earlier draft's pending craft/lifecycle items. Source changes remain on PR7 until the checked preview is inspected. No production release is claimed by this review alone.
+
+### Causal and craft corrections
+
+- Exact output carriers now move from the previous output column to the next input column during the first18% of chapters2–5. Identity, color, row and underlying value do not change; the next arithmetic operation waits for arrival. Moving displayed numbers are not interpolated into invented probabilities.
+- Q/K products enter a shared merge/divide path; the computed score travels to its owning row, and future rows do not expose scores before their turn. Close inspection found a2-unit gap under a component well; its connector now starts at the well boundary. The formula has its own clearance below the merge endpoint.
+- Softmax first collects raw exponential weights into one denominator. Only then does each row trace its fraction on the same0..100% ruler; its result number appears at completion. A traced bar is a teaching pointer, not a changing distribution or measured execution latency. The pending handoff heading no longer exposes the denominator result early. Narration and accessible operation description follow the same pose.
+- V has a dashed original-length outline and a coloredpV portion on the same0..20 scale as the result. Nonzero contributions leave explicit ports on the row face and travel outside the data rows. A zeroV or maskedD does not emit a flight. Cumulative addition exposes exact operands, not merely a final total.
+- Carrying plates now have separate front, side, bottom and contact-shadow surfaces. Quantitative lengths stay frontal and unskewed. Active outlines, component wells, common-denominator inputs, bar ticks and actual source/receiver connections provide functional detail rather than decorative parts. This is a mathematical exhibit, not a fictitious mechanical attention device or physical naked-eye stereo display.
+- Key mobile SVG type has an18-unit floor and darker identity-hue ink; bubble body is14px. Displayed rounded quantities use≈, including the query, denominator and output. Internal calculations remain full precision. Corrected an old Embedding meta description on the Attention page.
+
+### Actual browser evidence
+
+Current cloud Chrome, desktop1363×936 and a390×844 iframe, same built source. The iframe is a real narrow browser layout, not a physical phone test. Native4× is CSS zoom of the vector-rendered1200×1000 iframe; screenshots are not enlarged rasters. QA controls and a repeatable output-port focus are saved in evals/browser/attention-review.html (not a public product route).
+
+| Evidence | Observed |
+| --- | --- |
+| [1× denominator](assets/2026-10-30/softmax-final.jpg) | Four colored inputs, summation bus, shared partial denominator, waiting row result slots; completed results are not all shown at chapter entry. |
+| [4× component merge](assets/2026-10-30/qk-4x-final.jpg) | Both component paths meet the merge; boundary contact and formula clearance visible. |
+| [4× output port](assets/2026-10-30/b-port-4x.jpg) | B's source port contacts its front face; side/bottom/shadow relationships remain coherent; the route stays outside other row data. |
+| [390px handoff23.7s](assets/2026-10-30/handoff-final.jpg) | Each carried masked score retains its own row/color; no percentages or next result labels are assigned to other objects. |
+| [390px weightedV38s, future1000](assets/2026-10-30/value-final.jpg) | DashedV and filledpV share a ruler; long future input remains readable; only nonzero visible-position contributions travel. |
+| [390px playing](assets/2026-10-30/playing-final.jpg) | Header, one bubble, full mathematical stage, bounds label and transport fit in844px. Configuration/footer have eased out; pause restores them. Initial configuration view can scroll. |
+
+Browser DOM checks covered31 forward frames at0,7,8.2,8.6,8.9,14.95,15,15.7,16.5,20,22.95,23,23.7,24.5,25.5,26.5,28,30.95,31,31.8,32.8,34,36,38,39.95,40,40.7,42,44,47,48s. All SVG text stayed within its horizontal viewport. Smallest SVG type across that matrix was15.178 CSSpx; the final38s long-input frame measured the same. This is not a general proof against all font/device collisions. Twelve selected intermediate/end frames were replayed in reverse; DOM geometry attributes, text, colors and path coordinates matched their forward snapshots exactly. [Raw browser record](assets/2026-10-30/dom-checks.json). The saved matrix preceded final wording/port-only corrections; final affected23.7s/38s and4× port frames were rechecked after those corrections.
+
+Actual UI actions checked: Space on play, Escape pause, pause/continue, Home/End on timeline, reset, end→replay, natural47→48 completion and configuration return, info-open pause, manual reduced-motion toggle and immediate endpoints, query±/zero, future0/1000, incorrect/correct quiz feedback and verify-in-diagram return. Controlled document.hidden visibilitychange paused at1.05s and visible restoration did not auto-resume. The cloud surfaces kept document.visibilityState=visible when interacting with another tab, so OS/browser background scheduling is NOT independently verified; only the actual browser handler with a controlled hidden event is evidenced. Manual reduced motion was tested, not a device OS preference toggle.
+
+### Source and numerical review
+
+Official PyTorch2.14 source/algorithm revisited2026-10-30: scale1/sqrt(d), add causal−∞ bias before softmax, then weightedV; dropout omitted explicitly. Existing independent goldens still match outputs15.752103826,10,4.247896174, with futureV invariance. npm run check passes:17,298 pose cases, raw/stable normalization agreement, dot-product reconstruction, cumulative sums, no masked/zero flight, exact path endpoints/segments, reverse seeking, exact handoff ownership and additional post-arrival/end-boundary checks. All existing scene/mechanical tests retained; no claim that every mechanical UI was re-exercised.
+
+### Teaching review decision
+
+The input, question and changing output are explicit; the visible operation connects corresponding components, excludes a future row, divides by one denominator and combinesV contributions. The learner can pause each stage, predict the query-zero case, operate it, and inspect why the visible three-way mean is10 rather than20 or257.5. Query reversal changes the relative weights/output; changing only futureV leaves them invariant. The display distinguishes score from probability, attention mixture from token sampling, K fromV, percentage from output units, and annotation trace from actual model timing.
+
+Developer teaching/craft review closes the concrete reopened Attention findings for this candidate. It does not establish Anatomy equivalence, an award-level score or measured learning gains. No real learner study, physical phone, alternate browser engine or screen-reader-device study has been performed. Skill distribution alignment and untested hosts remain pending. Tokenization and Embedding reviews remain open. Release only after the exact preview head/checks and production SHA/READY/domain flow are verified; preserve original receipts.

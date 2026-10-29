@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-29",
+  "updated": "2026-10-30",
   "target": 10,
   "cadenceHours": 12,
   "releasePolicy": "One reviewed scene per iteration; continue a failed scene before advancing.",
@@ -63,9 +63,10 @@
       "verifiedDeployment": "dpl_H4cKbv114YSRUKfzEGFXcdUXfE9P",
       "verifiedOn": "2026-10-28",
       "visualAcceptance": {
-        "status": "needs-rework",
-        "reviewDate": "2026-10-28",
-        "review": "docs/ai-learning/reviews/2026-10-28-anatomy-quality.md"
+        "status": "reviewed-pass",
+        "reviewDate": "2026-10-30",
+        "review": "docs/ai-learning/reviews/2026-10-29-attention-rework.md",
+        "evidenceType": "developer teaching/craft and actual browser review; no learner-effect study"
       }
     },
     {
@@ -165,7 +166,7 @@
     "candidate": {
       "scene": "attention",
       "branch": "rework/attention-causal-20261029",
-      "status": "draft-needs-causal-and-browser-review",
+      "status": "reviewed-awaiting-preview-and-release",
       "record": "docs/ai-learning/reviews/2026-10-29-attention-rework.md",
       "productionChanged": false
     }

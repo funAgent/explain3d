@@ -1,6 +1,6 @@
 # AI principles course status
 
-Updated: 2026-10-29 (Asia/Shanghai).
+Updated: 2026-10-30 (Asia/Shanghai).
 
 Current total: **4 / 10 published**. **Visual acceptance reopened for all four on 2026-10-28 after user feedback.** Token-choice follow-up has passed developer visual/teaching review and its checked release is verified in production; the other three remain open. Next rework: **Attention**. New topics, including Transformer, are on hold until the four-scene rework queue passes the updated review gates.
 
@@ -70,3 +70,8 @@ Branch `rework/attention-causal-20261029`: persistent position rows, exact opera
 ### Attention follow-up — 2026-10-29
 
 Same PR7 now has separate Q/K component wells and merge paths, routed contribution markers, correctedK header, darker text and measured15.21px narrow type. Rounded displayed arithmetic uses≈. Full tests passed; selected desktop intermediate/reverse and390px observations completed. Still draft: chapter handoffs and full4×/lifecycle/playing-layout gates remain open. No production update.
+
+
+## Attention reviewed candidate — 2026-10-30
+
+PR7 now has exact cross-chapter carriers, causal shared-denominator formation, delayed per-row result labels, same-scaleV/pV outlines and explicit source ports. Actual1×/native4×/390px intermediate evidence,31-frame narrow text/bounds checks and12 reverse geometry checks close the listed candidate craft findings. All numerical/site checks and affected playback/keyboard/manual-motion/quiz flows passed. A controlled hidden event was tested; native background scheduling, physical phones and learning-effect research remain unverified. Exact [record and screenshots](reviews/2026-10-29-attention-rework.md). Candidate passes developer review, but production is still unchanged until branch preview and source-matched release verification. Keep Attention active until that receipt; then Tokenization is next. Other published receipts and new-topic hold stay intact. Public Skill alignment remains pending.

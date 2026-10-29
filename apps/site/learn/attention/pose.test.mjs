@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {sample} from './model.mjs';
-import {lessonPose,pointOnPath} from './pose.mjs';
+import {lessonPose,pointOnPath,handoff} from './pose.mjs';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-10);
 let count=0;
 for(const id of [-1,0,1])for(const future of [0,100,1000])for(const reduced of [false,true]){
@@ -24,3 +24,29 @@ assert.deepEqual(pointOnPath(path,0),[0,0]);assert.deepEqual(pointOnPath(path,1)
 assert.deepEqual(pointOnPath(path,.25),[10,0]);assert.deepEqual(pointOnPath(path,.5),[10,10]);
 for(let i=0;i<=100;i++){const [x,y]=pointOnPath(path,i/100);assert.ok(y===0||x===10||y===10);}
 console.log('Causal pointer path: exact junctions/endpoints and segment containment pass.');
+
+for(const id of [-1,0,1])for(const future of [0,1000])for(const phase of [2,3,4,5]){
+ const f={...sample(48,{id,future}),phase,progress:0};
+ const expected=phase===2?f.scores:phase===3?f.masked:phase===4?f.probs:f.terms;
+ for(const progress of [0,.03,.09,.179,.18,1]){
+  const h=handoff({...f,progress});assert.deepEqual(h.values,expected);assert.ok(h.progress>=0&&h.progress<=1);assert.equal(h.inTransit,progress<.18);
+  assert.equal(handoff({...f,progress},true).inTransit,false);
+ }
+}
+console.log('Chapter handoff: exact value/unit ownership and reduced-motion endpoints pass.');
+
+// Causality boundaries, independently chosen from chapter start/end semantics.
+for(const future of [0,1000])for(const id of [-1,0,1]){
+ for(const phase of [2,3,4,5]){
+  const base={...sample(48,{id,future}),phase};
+  for(const progress of [0,.09,.179,.18]){
+   const p=lessonPose({...base,progress});assert.equal(p.operation,0);
+   assert.ok(p.flights.every(x=>x===0));
+  }
+  const end=lessonPose({...base,progress:1});assert.equal(end.operation,1);assert.equal(end.travel,1);
+  end.flights.forEach((x,i)=>assert.equal(x,base.terms[i]===0?0:1));
+ }
+ const a=lessonPose({...sample(35,{id,future}),phase:4}),b=lessonPose({...sample(35,{id,future:1000-future}),phase:4});
+ assert.deepEqual(a.flights,b.flights);assert.deepEqual(a.cumulative,b.cumulative);
+}
+console.log('Post-handoff operations wait for arrival, finish exactly, and preserve future isolation.');
