@@ -15,7 +15,7 @@ function teachingCopy(f){
  else if(f.phase===3){
   c.title=p.collect<1?'先求一个共同分母':`${TOKENS[p.active]} 的份额，除以同一分母`;
   c.body=p.collect<1?'把各行的指数权重相加。未来 D 的指数为 0，不进入分母。':'短条按 0→100% 的共同刻度描出份额。这是混合信息的权重，不是抽取下一个 Token。';
- }else if(f.phase===4){c.title=`读取 ${TOKENS[p.active]} 的 V，再汇入结果`;c.body='虚线是 V，实色是读出的份额，同一刻度。非零贡献沿连线汇入底部；零值与未来位置不发出贡献。';}
+ }else if(f.phase===4){c.title=p.active===3?'未来 D 被排除，贡献为 0':`读取 ${TOKENS[p.active]} 的 V，再汇入结果`;c.body='虚线是 V，实色是读出的份额，同一刻度。非零贡献沿连线汇入底部；零值与未来位置不发出贡献。';}
  if(f.phase===5&&!h?.inTransit)c.body='保持 K/V 不变，试着切换查询方向。再只改未来 D 的 V：输出为何不变？查询归零后又是多少？';
  return c;
 }
