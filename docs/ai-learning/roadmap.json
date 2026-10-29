@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-28",
+  "updated": "2026-10-30",
   "target": 10,
   "cadenceHours": 12,
   "releasePolicy": "One reviewed scene per iteration; continue a failed scene before advancing.",
@@ -63,9 +63,10 @@
       "verifiedDeployment": "dpl_H4cKbv114YSRUKfzEGFXcdUXfE9P",
       "verifiedOn": "2026-10-28",
       "visualAcceptance": {
-        "status": "needs-rework",
-        "reviewDate": "2026-10-28",
-        "review": "docs/ai-learning/reviews/2026-10-28-anatomy-quality.md"
+        "status": "reviewed-pass",
+        "reviewDate": "2026-10-30",
+        "review": "docs/ai-learning/reviews/2026-10-29-attention-rework.md",
+        "evidenceType": "developer teaching/craft and actual browser review; no learner-effect study"
       }
     },
     {
@@ -163,11 +164,11 @@
     ],
     "resumeAfter": "All four published scenes pass the reopened craft and causal-motion gates.",
     "candidate": {
-      "scene": "token-choice",
-      "branch": "fix/token-choice-morph-craft-20261028",
-      "status": "published-and-production-verified",
-      "record": "docs/ai-learning/reviews/2026-10-28-token-choice-rework.md",
-      "productionChanged": true
+      "scene": "attention",
+      "branch": "rework/attention-causal-20261029",
+      "status": "reviewed-awaiting-preview-and-release",
+      "record": "docs/ai-learning/reviews/2026-10-29-attention-rework.md",
+      "productionChanged": false
     }
   }
 }
