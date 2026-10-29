@@ -20,3 +20,6 @@ Observed: complete playback reached 48/48 and restored configuration. Backward s
 ## Rework draft — 2026-10-29
 
 See `docs/ai-learning/reviews/2026-10-29-attention-rework.md`. Exact operation/row pose tests passed; preliminary desktop observation only. Not visually accepted or published. Original publication evidence does not validate this new candidate.
+
+
+Q/K component follow-up adds paired multiplication wells, explicit merge and routed contribution paths. Desktop7.2/8.2/8.6/9.0/reverse8.2 and selected390px inspection completed; narrow type measured15.21px after repair. Rounded arithmetic uses≈. Full release review remains pending; see the same rework record.

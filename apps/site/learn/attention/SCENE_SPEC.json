@@ -68,11 +68,11 @@
   ],
   "reworkDraft": {
     "date": "2026-10-29",
-    "layout": "Persistent position rows, exact operation rail, raw exponential denominator, causal mask shutter and nonzero value contribution traces",
+    "layout": "Persistent rows; paired Q/K component products and merge/divide paths; raw normalization; orthogonal nonzero contribution paths",
     "notAccepted": [
-      "Q/K component formation needs stronger causal motion",
-      "390px and4x evidence incomplete",
-      "Full lifecycle/preview/production verification pending"
+      "Cross-chapter value handoffs need continuity",
+      "Complete1x/4x, narrow playing layout and lifecycle evidence pending",
+      "Final rounded-arithmetic wording needs browser recheck"
     ]
   }
 }

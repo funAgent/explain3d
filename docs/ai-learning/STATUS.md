@@ -65,3 +65,8 @@ Merged source `26defa3024d64af69f8a4da8f66e8d23287cb523` reached production READ
 ## Attention causal rework draft — 2026-10-29
 
 Branch `rework/attention-causal-20261029`: persistent position rows, exact operation rail, mask trace and nonzero contribution movement implemented. npm run check and17,298 new pose cases passed. Preliminary desktop Softmax observation completed. This is **not released or visually accepted**: component formation/chapter continuity and the390px/4×/lifecycle matrix still need work. Continue this candidate rather than starting a new topic. [Exact evidence and remaining gates](reviews/2026-10-29-attention-rework.md). Production remains unchanged.
+
+
+### Attention follow-up — 2026-10-29
+
+Same PR7 now has separate Q/K component wells and merge paths, routed contribution markers, correctedK header, darker text and measured15.21px narrow type. Rounded displayed arithmetic uses≈. Full tests passed; selected desktop intermediate/reverse and390px observations completed. Still draft: chapter handoffs and full4×/lifecycle/playing-layout gates remain open. No production update.

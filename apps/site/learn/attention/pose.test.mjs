@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {sample} from './model.mjs';
-import {lessonPose} from './pose.mjs';
+import {lessonPose,pointOnPath} from './pose.mjs';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-10);
 let count=0;
 for(const id of [-1,0,1])for(const future of [0,100,1000])for(const reduced of [false,true]){
@@ -18,3 +18,9 @@ for(const id of [-1,0,1])for(const future of [0,100,1000])for(const reduced of [
  for(let tick=960;tick>=0;tick-=13)assert.deepEqual(lessonPose(sample(tick/20,{id,future}),reduced),snapshots[tick]);
 }
 console.log(`Attention teaching pose: ${count} cases; raw/stable normalization, dot products, cumulative sum, masked no-flight and reverse seek passed.`);
+
+const path=[[0,0],[10,0],[10,10],[30,10]];
+assert.deepEqual(pointOnPath(path,0),[0,0]);assert.deepEqual(pointOnPath(path,1),[30,10]);
+assert.deepEqual(pointOnPath(path,.25),[10,0]);assert.deepEqual(pointOnPath(path,.5),[10,10]);
+for(let i=0;i<=100;i++){const [x,y]=pointOnPath(path,i/100);assert.ok(y===0||x===10||y===10);}
+console.log('Causal pointer path: exact junctions/endpoints and segment containment pass.');

@@ -9,3 +9,11 @@ export function lessonPose(f,reduced=false){
   products:f.keys[active].map((k,j)=>k*f.q[j]),
   cumulative:f.terms.map((_,i)=>f.terms.slice(0,i+1).reduce((a,b)=>a+b,0))};
 }
+
+export function pointOnPath(points,t){
+ const lengths=points.slice(1).map((p,i)=>Math.hypot(p[0]-points[i][0],p[1]-points[i][1]));
+ let distance=clamp(t)*lengths.reduce((a,b)=>a+b,0),i=0;
+ while(i<lengths.length-1&&distance>lengths[i])distance-=lengths[i++];
+ const fraction=lengths[i]?distance/lengths[i]:1;
+ return points[i].map((v,j)=>v+(points[i+1][j]-v)*fraction);
+}
