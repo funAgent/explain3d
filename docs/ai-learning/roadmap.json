@@ -63,10 +63,20 @@
       "verifiedDeployment": "dpl_H4cKbv114YSRUKfzEGFXcdUXfE9P",
       "verifiedOn": "2026-10-28",
       "visualAcceptance": {
-        "status": "reviewed-pass",
+        "status": "needs-rework",
         "reviewDate": "2026-10-30",
         "review": "docs/ai-learning/reviews/2026-10-29-attention-rework.md",
-        "evidenceType": "developer teaching/craft and actual browser review; no learner-effect study"
+        "evidenceType": "developer teaching/craft and actual browser review; no learner-effect study",
+        "openItems": [
+          "Masked D is numerically excluded, but phase-5 heading says read D; PR8 fixes wording and awaits exact preview UI verification."
+        ]
+      },
+      "reworkRelease": {
+        "commit": "c558a4c90d8352ab61111698d83f8bde970ab8c6",
+        "deployment": "dpl_DAtHS2JLY7Fbbcc3qFbp5QcXsjJz",
+        "verifiedOn": "2026-10-30",
+        "route": "https://explain.funagent.app/learn/attention/",
+        "pr": 7
       }
     },
     {
@@ -165,10 +175,12 @@
     "resumeAfter": "All four published scenes pass the reopened craft and causal-motion gates.",
     "candidate": {
       "scene": "attention",
-      "branch": "rework/attention-causal-20261029",
-      "status": "reviewed-awaiting-preview-and-release",
+      "branch": "fix/attention-masked-narration-20261030",
+      "status": "blocked-protected-preview-access",
       "record": "docs/ai-learning/reviews/2026-10-29-attention-rework.md",
-      "productionChanged": false
+      "productionChanged": true,
+      "pr": 8,
+      "reviewedHead": "df231169d685629e22fb11bcf1cf472f6b1d44c2"
     }
   }
 }
