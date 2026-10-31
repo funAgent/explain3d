@@ -21,7 +21,7 @@ export function createStage(host,{reducedMotion=()=>false}={}){
  const active=pose.active,c=COLORS[active],collecting=phase===3&&!transfer?.inTransit&&pose.collect<1;
  const arrived=(i,t=.9)=>i<active||i===active&&pose.travel>=t;
  plate(12,4,W-24,108);
- const titles=['查询 C · 一条 Q，四组 K/V',`逐项匹配 · ${TOKENS[active]}`, '先遮住未来 D，再做 Softmax',transfer?.inTransit?'分数 → 指数 → 共同分母':collecting?'共同分母 · 汇集全部指数权重':`同一个分母 · Σ exp(s) ≈ ${fmt(pose.denominator)}`,`逐项读取 · ${TOKENS[active]}`,'所有贡献相加，不是挑最大的一项'];
+ const titles=['查询 C · 一条 Q，四组 K/V',`逐项匹配 · ${TOKENS[active]}`, '先遮住未来 D，再做 Softmax',transfer?.inTransit?'分数 → 指数 → 共同分母':collecting?'共同分母 · 汇集全部指数权重':`同一个分母 · Σ exp(s) ≈ ${fmt(pose.denominator)}`,active===3?'未来 D · 权重为 0':`逐项读取 · ${TOKENS[active]}`,'所有贡献相加，不是挑最大的一项'];
  text(W/2,25,titles[phase],mobile?17:19,phase===2?COLORS[3]:c);
  let formula=`q ≈ [${fmt(f.q[0])}, 0]`;
  if(phase===1)formula=mobile?`(${fmt(f.q[0])}×${f.keys[active][0]} + 0) / √2 ≈ ${fmt(f.scores[active])}`:`(${fmt(f.q[0])} × ${f.keys[active][0]} + 0 × ${f.keys[active][1]}) / √2 ≈ ${fmt(f.scores[active])}`;
